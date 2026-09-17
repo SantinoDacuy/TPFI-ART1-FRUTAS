@@ -1,0 +1,205 @@
+{
+  "n_features": 5,
+  "rho": 0.7,
+  "L": 2.0,
+  "max_categorias": 50,
+  "top_down": [
+    [
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      0,
+      0
+    ]
+  ],
+  "metadata_extra": {
+    "cols_features": [
+      "es_grande",
+      "es_pesada",
+      "textura_firme",
+      "sin_defectos_superficie",
+      "color_homogeneo"
+    ],
+    "cols_metadata": [
+      "calidad_real"
+    ],
+    "mapeo_clusters": {
+      "0": {
+        "n": 3,
+        "etiqueta": "comercial",
+        "pureza": 0.6667,
+        "col_referencia": "calidad_real"
+      },
+      "1": {
+        "n": 9,
+        "etiqueta": "descarte",
+        "pureza": 0.4444,
+        "col_referencia": "calidad_real"
+      },
+      "2": {
+        "n": 5,
+        "etiqueta": "premium",
+        "pureza": 1.0,
+        "col_referencia": "calidad_real"
+      },
+      "3": {
+        "n": 17,
+        "etiqueta": "premium",
+        "pureza": 0.7647,
+        "col_referencia": "calidad_real"
+      },
+      "4": {
+        "n": 11,
+        "etiqueta": "comercial",
+        "pureza": 0.7273,
+        "col_referencia": "calidad_real"
+      },
+      "5": {
+        "n": 4,
+        "etiqueta": "premium",
+        "pureza": 0.75,
+        "col_referencia": "calidad_real"
+      },
+      "6": {
+        "n": 5,
+        "etiqueta": "comercial",
+        "pureza": 0.6,
+        "col_referencia": "calidad_real"
+      },
+      "7": {
+        "n": 9,
+        "etiqueta": "comercial",
+        "pureza": 0.8889,
+        "col_referencia": "calidad_real"
+      },
+      "8": {
+        "n": 5,
+        "etiqueta": "descarte",
+        "pureza": 0.6,
+        "col_referencia": "calidad_real"
+      },
+      "9": {
+        "n": 1,
+        "etiqueta": "comercial",
+        "pureza": 1.0,
+        "col_referencia": "calidad_real"
+      },
+      "10": {
+        "n": 1,
+        "etiqueta": "comercial",
+        "pureza": 1.0,
+        "col_referencia": "calidad_real"
+      },
+      "11": {
+        "n": 3,
+        "etiqueta": "descarte",
+        "pureza": 1.0,
+        "col_referencia": "calidad_real"
+      },
+      "12": {
+        "n": 14,
+        "etiqueta": "descarte",
+        "pureza": 1.0,
+        "col_referencia": "calidad_real"
+      },
+      "13": {
+        "n": 3,
+        "etiqueta": "descarte",
+        "pureza": 1.0,
+        "col_referencia": "calidad_real"
+      }
+    },
+    "n_muestras_entrenamiento": 90
+  }
+}

@@ -34,20 +34,82 @@ UMBRALES = {
 
 
 def segmentar(img_bgr):
-    """Separa la fruta del fondo. Fruits-360 (y la mayoria de fotos de
-    linea de produccion) usan fondo blanco/uniforme, asi que un umbral
-    sobre el canal de saturacion + valor funciona mejor que un umbral
-    simple de gris (evita perder frutas claras como manzanas amarillas)."""
+    """Separa la fruta del fondo usando un enfoque hibrido robusto:
+      1. Canal de Saturacion (HSV): las frutas tienen pigmentacion cromatica
+         viva frente a fondos neutros (mesas, manteles, fondos blancos o grises).
+      2. Si la mascara de saturacion es valida (entre 3% y 75% del area total),
+         se adopta por su alta precision ante sombras y reflejos.
+      3. Si no, se utiliza umbralizacion adaptativa de Otsu en escala de grises
+         con deteccion automatica de polaridad (fondos claros u oscuros).
+    """
+    h, w = img_bgr.shape[:2]
+    area_total = h * w
+    kernel = np.ones((7, 7), np.uint8)
+
+    # ── Metodo 1: Segmentacion por Saturacion Cromatica (HSV) ──
     hsv = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2HSV)
-    h, s, v = cv2.split(hsv)
-    # Fondo = blanco = baja saturacion y alto valor
-    fondo = (s < 30) & (v > 200)
-    mascara = (~fondo).astype(np.uint8) * 255
-    # Limpieza morfologica: saca ruido y rellena huecos chicos
-    kernel = np.ones((5, 5), np.uint8)
-    mascara = cv2.morphologyEx(mascara, cv2.MORPH_OPEN, kernel)
-    mascara = cv2.morphologyEx(mascara, cv2.MORPH_CLOSE, kernel)
+    sat = hsv[:, :, 1]
+    blur_s = cv2.GaussianBlur(sat, (7, 7), 0)
+    _, bin_s = cv2.threshold(blur_s, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    clean_s = cv2.morphologyEx(bin_s, cv2.MORPH_OPEN, kernel, iterations=2)
+    clean_s = cv2.morphologyEx(clean_s, cv2.MORPH_CLOSE, kernel, iterations=3)
+
+    conts_s, _ = cv2.findContours(clean_s, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if conts_s:
+        mayor_s = max(conts_s, key=cv2.contourArea)
+        area_s = cv2.contourArea(mayor_s)
+        # Si el contorno de saturacion tiene proporcion coherente de fruta
+        if 0.03 * area_total <= area_s <= 0.75 * area_total:
+            masc = np.zeros((h, w), dtype=np.uint8)
+            cv2.drawContours(masc, [mayor_s], -1, 255, thickness=cv2.FILLED)
+            return masc
+
+    # ── Metodo 2: Segmentacion por Escala de Grises (Otsu Adaptativo) ──
+    gris = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
+    blur_g = cv2.GaussianBlur(gris, (7, 7), 0)
+
+    # Muestrear el perimetro exterior para evaluar el brillo del fondo
+    margen_h = max(1, h // 25)
+    margen_w = max(1, w // 25)
+    borde_pixels = np.concatenate([
+        blur_g[0:margen_h, :].flatten(),
+        blur_g[-margen_h:, :].flatten(),
+        blur_g[:, 0:margen_w].flatten(),
+        blur_g[:, -margen_w:].flatten(),
+    ])
+    brillo_borde = float(np.mean(borde_pixels))
+    otsu_val, _ = cv2.threshold(blur_g, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+    fondo_es_claro = brillo_borde >= otsu_val
+    modo_thresh = cv2.THRESH_BINARY_INV if fondo_es_claro else cv2.THRESH_BINARY
+
+    _, bin_otsu = cv2.threshold(blur_g, otsu_val, 255, modo_thresh)
+    cleaned = cv2.morphologyEx(bin_otsu, cv2.MORPH_OPEN, kernel, iterations=2)
+    cleaned = cv2.morphologyEx(cleaned, cv2.MORPH_CLOSE, kernel, iterations=3)
+
+    conts_g, _ = cv2.findContours(cleaned, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    mascara = np.zeros((h, w), dtype=np.uint8)
+    if conts_g:
+        mayor_g = max(conts_g, key=cv2.contourArea)
+        cv2.drawContours(mascara, [mayor_g], -1, 255, thickness=cv2.FILLED)
+
+    # Fallback seguro: si la mascara es anomalamente gigante (>85%) o nula (<2%)
+    area_masc = cv2.countNonZero(mascara)
+    if area_masc / area_total > 0.85 or area_masc / area_total < 0.02:
+        modo_alt = cv2.THRESH_BINARY if fondo_es_claro else cv2.THRESH_BINARY_INV
+        _, bin_alt = cv2.threshold(blur_g, otsu_val, 255, modo_alt)
+        cleaned_alt = cv2.morphologyEx(bin_alt, cv2.MORPH_OPEN, kernel, iterations=2)
+        cleaned_alt = cv2.morphologyEx(cleaned_alt, cv2.MORPH_CLOSE, kernel, iterations=3)
+        conts_alt, _ = cv2.findContours(cleaned_alt, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        if conts_alt:
+            mayor_alt = max(conts_alt, key=cv2.contourArea)
+            area_alt = cv2.contourArea(mayor_alt)
+            if 0.03 * area_total <= area_alt <= 0.80 * area_total:
+                mascara = np.zeros((h, w), dtype=np.uint8)
+                cv2.drawContours(mascara, [mayor_alt], -1, 255, thickness=cv2.FILLED)
+
     return mascara
+
 
 
 def contorno_principal(mascara):
@@ -104,11 +166,17 @@ def extraer_features(img_bgr, mascara):
     prof_defecto = 0.0
     if len(c) > 3:
         hull_idx = cv2.convexHull(c, returnPoints=False)
+        # hull_idx puede ser None o tener < 4 puntos en contornos simples
         if hull_idx is not None and len(hull_idx) > 3:
-            defectos = cv2.convexityDefects(c, hull_idx)
-            if defectos is not None:
-                prof_max = max(d[0][3] for d in defectos) / 256.0
-                prof_defecto = prof_max / h
+            try:
+                defectos = cv2.convexityDefects(c, hull_idx)
+                if defectos is not None and defectos.ndim == 3:
+                    # Forma esperada: (N, 1, 4) — acceso seguro
+                    prof_max = float(np.max(defectos[:, 0, 3])) / 256.0
+                    prof_defecto = prof_max / h
+            except (cv2.error, IndexError, ValueError):
+                # Contorno degenrado: no hay defectos calculables
+                prof_defecto = 0.0
 
     # densidad_alta (proxy de compacidad): solidez = area / area del casco convexo
     solidez = (area / area_hull) if area_hull > 0 else 0.0

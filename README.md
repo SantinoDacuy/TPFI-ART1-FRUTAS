@@ -14,34 +14,59 @@ pip install -r requirements.txt
 ## Estructura
 
 ```
-preprocesador.py               # pipeline OpenCV: segmentación, centrado/
-                                # escalado, extracción de features, binarización
+preprocesador.py               # pipeline OpenCV hibrido: segmentacion, centrado/
+                                # escalado, extraccion de features, binarizacion
+preprocesador_calidad.py       # pipeline y umbrales de referencia de calidad
+CarGross.py                    # red ART1: clasificacion, persistencia e inferencia
+probar_imagen.py               # inferencia interactiva en vivo (dos etapas + grafico)
+demo.py                        # ejecucion automatizada de punta a punta
 scripts/
-  generar_dataset_morfologia.py  # arma datasets/dataset_morfologia.csv
-                                  # desde fotos locales de Fruits-360
-CarGross.py                    # red ART1 (PENDIENTE de implementar)
+  extractor_calidad.py         # genera dataset_calidad_real.csv desde imagenes
+  generar_dataset_morfologia.py # genera dataset_morfologia.csv
 datasets/
-  dataset_morfologia.csv               # 150 filas, fotos reales (Fruits-360)
-  dataset_morfologia_sintetico_pruebas.csv  # patrones limpios, solo para
-                                              # testear la matemática de ART1
-  dataset_calidad_sintetico_pruebas.csv     # ídem, calidad de manzanas
-comparacion_pipeline.png       # ejemplo visual: original / máscara / centrado
+  dataset_morfologia.csv       # 150 filas reales (citricos, tropicales, carozo)
+  dataset_calidad_real.csv     # 90 manzanas reales (premium, comercial, descarte)
+modelos/
+  art1_morfologia.json         # modelo ART1 Etapa 1 entrenado y persistido
+  art1_calidad.json            # modelo ART1 Etapa 2 entrenado y persistido
 ```
 
-## Estado actual
+## Uso
 
-- [x] Justificación del problema y arquitectura de dos etapas (confirmada
-      por la cátedra)
-- [x] Preprocesamiento con OpenCV (segmentación, centrado+escalado, features
-      en grises + color) — probado sobre 150 fotos reales, 0 errores
-- [x] `dataset_morfologia.csv` real (Cítricos / Tropicales / Carozo)
-- [ ] `dataset_calidad.csv` real — pendiente: bajar dataset de calidad de
-      manzanas (Kaggle: "Fresh and Stale Classification" o "Fruit Quality
-      Classification") y correr un script equivalente. Pendiente también
-      resolver cómo medir `es_grande` / `es_pesada` sin referencia de escala
-      en la foto.
-- [ ] `CarGross.py` — matemática de ART1 (ver docstring del archivo)
-- [ ] `informe_corridas.pdf`, `manual_referencia.pdf`, PPT con sonido
+### 1. Demostracion Completa
+Ejecuta las corridas de ambas etapas con distintos valores de vigilancia ($\rho$):
+```bash
+python demo.py --solo-corridas
+```
+
+### 2. Prueba en Vivo con una Imagen Individual (Defensa Oral)
+Evalua una fotografia cualquiera en dos etapas (Tipo de fruta $\to$ Calidad de manzana) y genera un panel visual con el preprocesamiento (`diagnostico_clasificacion.png`).
+
+Ejemplos incluidos listos para probar:
+```bash
+# Manzana de buena calidad (resona en Etapa 1 y pasa a Etapa 2)
+python probar_imagen.py --imagen ejemplos/manzana_premium.jpg
+
+# Manzana con dano / descarte
+python probar_imagen.py --imagen ejemplos/manzana_comercial_defecto.jpg
+
+# Citrico (resona en Morfologia y omite Etapa 2 de manzana)
+python probar_imagen.py --imagen ejemplos/naranja.jpg
+
+# Deteccion de novedad con plasticidad activa (aprende una categoria nueva)
+python probar_imagen.py --imagen ejemplos/manzana_descarte_severo.jpg --aprender
+```
+
+
+## Estado del Proyecto
+
+- [x] Justificacion del problema y arquitectura de dos etapas (aprobada por catedra).
+- [x] Preprocesamiento OpenCV robusto (segmentacion hibrida HSV/Otsu, centrado $200\times200$, metadato de color).
+- [x] Datasets reales (150 frutas en Morfologia y 90 manzanas en Calidad).
+- [x] `CarGross.py` implementado segun Carpenter-Grossberg (1987) con persistencia, inferencia sin mutacion de pesos y soporte de vector nulo.
+- [x] Script de prueba interactiva en vivo con reporte grafico (`probar_imagen.py`).
+- [x] Demo automatizado (`demo.py`).
+
 
 ## Referencias
 

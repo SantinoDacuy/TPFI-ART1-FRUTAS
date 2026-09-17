@@ -19,3 +19,11 @@ Thumbs.db
 
 # Fruits-360 local (pesado, no va al repo)
 fruits-repo/
+
+# Dataset de imágenes de calidad (>1 GB, no va al repo — solo los CSV generados)
+datasets/processed_images_fruits/
+
+# Diagnósticos temporales de corridas
+diagnostico_*.png
+salida_diagnostico.png
+
