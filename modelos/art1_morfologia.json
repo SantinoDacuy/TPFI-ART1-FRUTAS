@@ -1,21 +1,29 @@
 {
   "n_features": 6,
-  "rho": 0.75,
+  "rho": 0.85,
   "L": 2.0,
   "max_categorias": 50,
   "top_down": [
     [
+      0,
       1,
       0,
       0,
-      1,
-      1,
+      0,
       0
     ],
     [
       0,
+      0,
+      0,
       1,
+      0,
+      1
+    ],
+    [
       1,
+      0,
+      0,
       0,
       0,
       0
@@ -32,6 +40,38 @@
       0,
       1,
       0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
       1,
       0,
       0
@@ -40,25 +80,9 @@
       0,
       1,
       0,
-      1,
-      1,
-      0
-    ],
-    [
-      1,
       0,
       1,
-      0,
-      0,
-      0
-    ],
-    [
-      0,
-      0,
-      1,
-      0,
-      1,
-      0
+      1
     ],
     [
       1,
@@ -69,9 +93,17 @@
       1
     ],
     [
+      0,
       1,
       0,
       1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
       0,
       1,
       0
@@ -79,26 +111,50 @@
     [
       0,
       1,
-      1,
       0,
-      1,
-      0
-    ],
-    [
-      0,
-      0,
-      1,
       1,
       1,
       0
     ],
     [
+      1,
+      1,
       0,
       1,
       1,
-      1,
-      0,
       0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
     ]
   ],
   "metadata_extra": {
@@ -115,78 +171,120 @@
     ],
     "mapeo_clusters": {
       "0": {
-        "n": 61,
-        "etiqueta": "carozo",
-        "pureza": 0.7541,
+        "n": 18,
+        "etiqueta": "tropical",
+        "pureza": 1.0,
         "col_referencia": "tipo_real"
       },
       "1": {
-        "n": 7,
-        "etiqueta": "tropical",
+        "n": 4,
+        "etiqueta": "carozo",
         "pureza": 1.0,
         "col_referencia": "tipo_real"
       },
       "2": {
-        "n": 9,
-        "etiqueta": "carozo",
-        "pureza": 0.8889,
+        "n": 5,
+        "etiqueta": "citrico",
+        "pureza": 0.8,
         "col_referencia": "tipo_real"
       },
       "3": {
-        "n": 4,
-        "etiqueta": "tropical",
-        "pureza": 0.75,
+        "n": 9,
+        "etiqueta": "carozo",
+        "pureza": 1.0,
         "col_referencia": "tipo_real"
       },
       "4": {
-        "n": 11,
+        "n": 18,
         "etiqueta": "tropical",
-        "pureza": 0.9091,
+        "pureza": 0.9444,
         "col_referencia": "tipo_real"
       },
       "5": {
-        "n": 1,
-        "etiqueta": "tropical",
-        "pureza": 1.0,
+        "n": 6,
+        "etiqueta": "carozo",
+        "pureza": 0.8333,
         "col_referencia": "tipo_real"
       },
       "6": {
-        "n": 8,
+        "n": 16,
         "etiqueta": "tropical",
-        "pureza": 1.0,
+        "pureza": 0.875,
         "col_referencia": "tipo_real"
       },
       "7": {
-        "n": 33,
+        "n": 6,
         "etiqueta": "citrico",
-        "pureza": 0.8182,
+        "pureza": 0.5,
         "col_referencia": "tipo_real"
       },
       "8": {
-        "n": 6,
-        "etiqueta": "tropical",
-        "pureza": 1.0,
+        "n": 8,
+        "etiqueta": "citrico",
+        "pureza": 0.75,
         "col_referencia": "tipo_real"
       },
       "9": {
         "n": 5,
-        "etiqueta": "tropical",
-        "pureza": 1.0,
+        "etiqueta": "carozo",
+        "pureza": 0.4,
         "col_referencia": "tipo_real"
       },
       "10": {
-        "n": 2,
-        "etiqueta": "tropical",
-        "pureza": 1.0,
+        "n": 9,
+        "etiqueta": "carozo",
+        "pureza": 0.7778,
         "col_referencia": "tipo_real"
       },
       "11": {
-        "n": 3,
+        "n": 12,
+        "etiqueta": "carozo",
+        "pureza": 0.4167,
+        "col_referencia": "tipo_real"
+      },
+      "12": {
+        "n": 9,
+        "etiqueta": "citrico",
+        "pureza": 0.6667,
+        "col_referencia": "tipo_real"
+      },
+      "13": {
+        "n": 13,
         "etiqueta": "tropical",
-        "pureza": 1.0,
+        "pureza": 0.4615,
+        "col_referencia": "tipo_real"
+      },
+      "14": {
+        "n": 11,
+        "etiqueta": "citrico",
+        "pureza": 0.8182,
+        "col_referencia": "tipo_real"
+      },
+      "15": {
+        "n": 3,
+        "etiqueta": "citrico",
+        "pureza": 0.6667,
+        "col_referencia": "tipo_real"
+      },
+      "16": {
+        "n": 8,
+        "etiqueta": "carozo",
+        "pureza": 0.75,
+        "col_referencia": "tipo_real"
+      },
+      "17": {
+        "n": 12,
+        "etiqueta": "citrico",
+        "pureza": 0.6667,
+        "col_referencia": "tipo_real"
+      },
+      "18": {
+        "n": 8,
+        "etiqueta": "carozo",
+        "pureza": 0.625,
         "col_referencia": "tipo_real"
       }
     },
-    "n_muestras_entrenamiento": 150
+    "n_muestras_entrenamiento": 180
   }
 }

@@ -30,14 +30,14 @@ import numpy as np
 from preprocesador import segmentar, centrar_y_escalar, contorno_principal, TAM_CANVAS
 
 # Umbrales de referencia calibrados a partir de las medianas del dataset
-# de entrenamiento (90 manzanas reales: 30 Premium, 30 Comercial, 30 Descarte).
+# curado (180 manzanas reales: 60 Premium, 60 Comercial, 60 Descarte).
 # Permiten evaluar frutas individuales en tiempo real sin requerir un lote completo.
 UMBRALES_REFERENCIA_CALIDAD = {
-    "area": 14263.5,
-    "volumen_proxy": 11100.25,
-    "textura_laplaciano": 541.85,
-    "defecto_score": 0.1688,
-    "desvio_hue": 50.69,
+    "area": 10320.5,
+    "volumen_proxy": 8567.8,
+    "textura_laplaciano": 439.7,
+    "defecto_score": 0.171,
+    "desvio_hue": 12.5,
 }
 
 

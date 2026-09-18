@@ -34,7 +34,7 @@ import time
 ROOT        = os.path.dirname(os.path.abspath(__file__))
 PYTHON      = sys.executable
 CARGROSS    = os.path.join(ROOT, "CarGross.py")
-EXTRACTOR   = os.path.join(ROOT, "scripts", "extractor_calidad.py")
+CURADOR     = os.path.join(ROOT, "scripts", "curar_dataset.py")
 CSV_MORF    = os.path.join(ROOT, "datasets", "dataset_morfologia.csv")
 CSV_CAL     = os.path.join(ROOT, "datasets", "dataset_calidad_real.csv")
 
@@ -90,8 +90,8 @@ def main():
   redes neuronales ART1 (aprendizaje no supervisado).
 
   Implementacion: CarGross.py + preprocesador.py
-  Datasets      : dataset_morfologia.csv (150 frutas)
-                  dataset_calidad_real.csv (90 manzanas reales)
+  Datasets      : dataset_morfologia.csv (180 frutas)
+                  dataset_calidad_real.csv (180 manzanas reales)
   Caracteristicas binarias: es_esferica, cascara_rugosa,
     tiene_tallo, densidad_alta, pigmentacion_oscura, color_uniforme
     """)
@@ -108,13 +108,13 @@ def main():
         titulo("PASO PREVIO — EXTRACCION DE FEATURES DE CALIDAD")
         if os.path.isfile(CSV_CAL):
             print(f"  dataset_calidad_real.csv ya existe. Se usa el existente.")
-            print(f"  (Para regenerarlo, eliminalo y volver a correr demo.py)")
+            print(f"  (Para regenerarlo, correr scripts/curar_dataset.py)")
         else:
-            print("  Generando dataset desde imagenes reales de manzanas...")
-            print("  Esto puede tardar 30-60 segundos.\n")
+            print("  Generando datasets desde imagenes reales de frutas...")
+            print("  Esto puede tardar unos segundos.\n")
             correr(
-                [PYTHON, EXTRACTOR, "--n", str(args.n_calidad), "--rng-seed", "42"],
-                "Dataset de calidad generado"
+                [PYTHON, CURADOR],
+                "Datasets y modelos regenerados con exito"
             )
 
     verificar_archivo(CSV_CAL, "dataset_calidad_real.csv")
@@ -124,7 +124,7 @@ def main():
     titulo("ETAPA 1 — CLASIFICACION MORFOLOGICA (tipo de fruta)")
     print("""
   Dataset: dataset_morfologia.csv
-  150 frutas de 3 tipos: citrico / tropical / carozo
+  180 frutas de 3 tipos: 60 citrico / 60 tropical / 60 carozo
   La red NO conoce las etiquetas. Solo ve los 6 bits binarios.
   Evaluamos si los clusters que forma coinciden con los tipos reales.
     """)
@@ -141,8 +141,8 @@ def main():
     titulo("ETAPA 2 — CLASIFICACION DE CALIDAD (manzanas)")
     print("""
   Dataset: dataset_calidad_real.csv
-  90 manzanas reales: premium / comercial / descarte
-  Features extraidos con preprocesador.py (OpenCV + Otsu).
+  180 manzanas reales: 60 premium / 60 comercial / 60 descarte
+  Features extraidos con preprocesador_calidad.py (OpenCV + Otsu).
   Pipeline: imagen -> segmentacion -> centrado -> features -> binario.
     """)
 

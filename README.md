@@ -21,14 +21,13 @@ CarGross.py                    # red ART1: clasificacion, persistencia e inferen
 probar_imagen.py               # inferencia interactiva en vivo (dos etapas + grafico)
 demo.py                        # ejecucion automatizada de punta a punta
 scripts/
-  extractor_calidad.py         # genera dataset_calidad_real.csv desde imagenes
-  generar_dataset_morfologia.py # genera dataset_morfologia.csv
+  curar_dataset.py             # curacion exhaustiva y generacion de ambos datasets
 datasets/
-  dataset_morfologia.csv       # 150 filas reales (citricos, tropicales, carozo)
-  dataset_calidad_real.csv     # 90 manzanas reales (premium, comercial, descarte)
+  dataset_morfologia.csv       # 180 filas reales (60 citricos, 60 tropicales, 60 carozo)
+  dataset_calidad_real.csv     # 180 manzanas reales (60 premium, 60 comercial, 60 descarte)
 modelos/
-  art1_morfologia.json         # modelo ART1 Etapa 1 entrenado y persistido
-  art1_calidad.json            # modelo ART1 Etapa 2 entrenado y persistido
+  art1_morfologia.json         # modelo ART1 Etapa 1 entrenado y persistido (rho=0.85)
+  art1_calidad.json            # modelo ART1 Etapa 2 entrenado y persistido (rho=0.70)
 ```
 
 ## Uso

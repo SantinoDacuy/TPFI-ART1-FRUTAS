@@ -27,7 +27,7 @@ UMBRALES = {
     "aspecto_esferico": 0.80,     # >= : es_esferica = 1
     "textura_laplaciano": 150.0,  # >= : cascara_rugosa = 1
     "profundidad_defecto": 0.06,  # >= (relativo al alto) : tiene_tallo = 1
-    "solidez": 0.94,              # >= : densidad_alta = 1 (proxy de compacidad)
+    "solidez": 0.90,              # >= : densidad_alta = 1 (proxy de compacidad)
     "gris_promedio": 130.0,       # <= : pigmentacion_oscura = 1
     "desvio_hue": 12.0,           # <= : color uniforme = 1 (homogeneo)
 }
