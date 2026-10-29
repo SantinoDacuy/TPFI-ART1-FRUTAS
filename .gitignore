@@ -27,3 +27,8 @@ datasets/processed_images_fruits/
 diagnostico_*.png
 salida_diagnostico.png
 
+
+# Salidas de la curacion segura y del modo aprendizaje (se generan a pedido)
+salida_curacion/
+salida_aprendizaje/
+.pytest_cache/

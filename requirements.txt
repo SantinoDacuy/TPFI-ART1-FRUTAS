@@ -1,2 +1,4 @@
-opencv-python-headless>=4.8
-numpy>=1.24
+# Versiones EFECTIVAMENTE verificadas (entorno nuevo, ver resultados/verificacion/): Python 3.14.0 en Windows 11.
+# Con OpenCV 4.x el comportamiento del primer avance en tiene_tallo es distinto (ver docs/informe_cambios.md).
+opencv-python-headless==5.0.0.93
+numpy==2.4.6

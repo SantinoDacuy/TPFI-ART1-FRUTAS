@@ -1,3 +1,9 @@
+> **DOCUMENTO HISTORICO (sesion del 08/09).** Describe el estado del proyecto en esa fecha: varios scripts que menciona
+> (`extractor_calidad.py`, `diagnostico_segmentacion.py`, ...) ya no existen y las cifras (150/90 filas, 6 variables de
+> calidad) estan desactualizadas. No se modifico su contenido. Para el estado vigente ver `README.md`,
+> `docs/informe_cambios.md` y `resultados/`. El codigo, datasets y modelos entregados estan respaldados en
+> `baseline_original/`.
+
 # Documentación de sesión de trabajo — TFI ART1 Frutas
 **Grupo 2 — Redes Neuronales — UADER FCyT**
 Fecha: 08/09/2026

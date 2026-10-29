@@ -10,6 +10,14 @@ Implementa el pipeline acordado con la catedra:
   4. Extraccion de un feature de color (gradiente/uniformidad de color) [sugerido por D. Lopez De Luise]
   5. Binarizacion por umbrales -> fila lista para CarGross.py
 
+Version del preprocesamiento
+  - v1: el del primer avance (segmentar, extraer_features, binarizar). Se conserva
+    SIN CAMBIOS para reproducir los modelos entregados (formato 1).
+  - v2: mejoras documentadas en docs/informe_cambios.md (segmentacion por
+    candidatos con puntaje de plausibilidad, tallo como protuberancia, tono
+    circular). Se agregan al final de este archivo; cada una puede activarse por
+    separado desde la configuracion de preprocesamiento guardada en el modelo.
+
 Requiere: opencv-python, numpy
 Uso tipico:
     from preprocesador import procesar_imagen
@@ -221,3 +229,334 @@ def procesar_imagen(ruta, fruta_id, tam=TAM_CANVAS, umbrales=UMBRALES, devolver_
     if devolver_crudos:
         return fila, crudos, img_c, masc_c
     return fila
+
+
+# ===========================================================================
+# PREPROCESAMIENTO v2 (mejoras; el codigo v1 de arriba no se modifica)
+# ===========================================================================
+TAM_TRABAJO = 320   # lado maximo con el que corre la segmentacion v2 (velocidad)
+SAT_MIN_TONO = 25   # pixeles con saturacion menor tienen tono indefinido (casi grises)
+
+
+def _impar(k):
+    k = int(round(k))
+    return k if k % 2 == 1 else k + 1
+
+
+def _rellenar_contorno(binaria):
+    """Deja solo el contorno externo mayor, relleno."""
+    cont, _ = cv2.findContours(binaria, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    out = np.zeros_like(binaria)
+    if cont:
+        cv2.drawContours(out, [max(cont, key=cv2.contourArea)], -1, 255, cv2.FILLED)
+    return out
+
+
+def _componente_central(binaria, min_frac=0.01):
+    """Componente conexa con mejor (area x centralidad); descarta las < min_frac."""
+    n, lab, st, cen = cv2.connectedComponentsWithStats(binaria, connectivity=8)
+    h, w = binaria.shape
+    mejor, mejor_s = None, -1.0
+    for i in range(1, n):
+        a = st[i, cv2.CC_STAT_AREA]
+        if a < min_frac * h * w:
+            continue
+        cx, cy = cen[i]
+        d = np.hypot((cx - w / 2) / w, (cy - h / 2) / h)
+        s = a * (1.0 - min(1.0, 1.2 * d))
+        if s > mejor_s:
+            mejor, mejor_s = i, s
+    if mejor is None:
+        return np.zeros_like(binaria)
+    return ((lab == mejor).astype(np.uint8)) * 255
+
+
+def _candidato_lab(img):
+    """Distancia en Lab al color de fondo estimado en el marco de la imagen,
+    umbral de Otsu. No supone color de fondo ni que la fruta sea saturada."""
+    h, w = img.shape[:2]
+    lab = cv2.cvtColor(cv2.GaussianBlur(img, (5, 5), 0), cv2.COLOR_BGR2LAB).astype(np.float32)
+    mh, mw = max(2, h // 20), max(2, w // 20)
+    borde = np.concatenate([lab[:mh].reshape(-1, 3), lab[-mh:].reshape(-1, 3),
+                            lab[:, :mw].reshape(-1, 3), lab[:, -mw:].reshape(-1, 3)])
+    fondo = np.median(borde, axis=0)
+    dist = np.linalg.norm(lab - fondo, axis=2)
+    d8 = np.clip(dist / (dist.max() + 1e-6) * 255, 0, 255).astype(np.uint8)
+    _, b = cv2.threshold(d8, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    m = max(h, w)
+    b = cv2.morphologyEx(b, cv2.MORPH_OPEN, np.ones((_impar(0.012 * m),) * 2, np.uint8))
+    b = cv2.morphologyEx(b, cv2.MORPH_CLOSE, np.ones((_impar(0.03 * m),) * 2, np.uint8))
+    return _rellenar_contorno(_componente_central(b))
+
+
+def _candidato_grabcut(img):
+    h, w = img.shape[:2]
+    mask = np.zeros((h, w), np.uint8)
+    rect = (int(w * 0.06), int(h * 0.06), int(w * 0.88), int(h * 0.88))
+    cv2.setRNGSeed(0)  # kmeans interno de GrabCut: resultado reproducible
+    try:
+        cv2.grabCut(img, mask, rect, np.zeros((1, 65)), np.zeros((1, 65)), 4, cv2.GC_INIT_WITH_RECT)
+    except cv2.error:
+        return np.zeros((h, w), np.uint8)
+    b = np.where((mask == 1) | (mask == 3), 255, 0).astype(np.uint8)
+    b = cv2.morphologyEx(b, cv2.MORPH_OPEN, np.ones((_impar(0.012 * max(h, w)),) * 2, np.uint8))
+    return _rellenar_contorno(_componente_central(b))
+
+
+def puntaje_plausibilidad(mascara):
+    """Puntaje [0,1] de que la mascara sea UN objeto compacto, centrado y que no
+    ocupe el borde de la imagen. Es una heuristica sin etiquetas (no usa la clase
+    de la fruta) para elegir entre candidatos de segmentacion; 0 = descartable."""
+    h, w = mascara.shape
+    area = cv2.countNonZero(mascara) / (h * w)
+    if area < 0.02 or area > 0.85:
+        return 0.0
+    cont, _ = cv2.findContours(mascara, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    c = max(cont, key=cv2.contourArea)
+    a_hull = cv2.contourArea(cv2.convexHull(c))
+    solidez = cv2.contourArea(c) / a_hull if a_hull > 0 else 0.0
+    borde = (np.count_nonzero(mascara[0]) + np.count_nonzero(mascara[-1]) +
+             np.count_nonzero(mascara[:, 0]) + np.count_nonzero(mascara[:, -1])) / (2.0 * (h + w))
+    ys, xs = np.nonzero(mascara)
+    cent = 1.0 - min(1.0, np.hypot(xs.mean() / w - 0.5, ys.mean() / h - 0.5) / 0.7071)
+    return float(solidez * max(0.0, 1.0 - 2.5 * borde) * (0.6 + 0.4 * cent))
+
+
+def segmentar_v2(img_bgr, devolver_info=False):
+    """Segmentacion v2: genera candidatos independientes (distancia Lab al fondo,
+    GrabCut con ventana central y la segmentacion v1) y elige el de mayor
+    puntaje de plausibilidad. Si ninguno es plausible conserva el de v1 (la
+    decision queda registrada en info['advertencia'])."""
+    h, w = img_bgr.shape[:2]
+    esc = min(1.0, TAM_TRABAJO / max(h, w))
+    chica = cv2.resize(img_bgr, (max(1, int(w * esc)), max(1, int(h * esc))),
+                       interpolation=cv2.INTER_AREA) if esc < 1.0 else img_bgr
+    candidatos = {"lab": _candidato_lab(chica), "grabcut": _candidato_grabcut(chica),
+                  "v1": segmentar(chica)}
+    puntajes = {k: puntaje_plausibilidad(m) for k, m in candidatos.items()}
+    elegido = max(puntajes, key=lambda k: puntajes[k])
+    advertencia = None
+    if puntajes[elegido] == 0.0:
+        elegido = "v1"
+        advertencia = "ningun candidato de segmentacion fue plausible"
+    elif puntajes[elegido] < 0.35:
+        advertencia = f"segmentacion dudosa (puntaje {puntajes[elegido]:.2f})"
+    masc = candidatos[elegido]
+    if esc < 1.0:
+        masc = cv2.resize(masc, (w, h), interpolation=cv2.INTER_NEAREST)
+    if devolver_info:
+        return masc, {"candidato": elegido, "puntajes": puntajes, "advertencia": advertencia}
+    return masc
+
+
+def medir_tallo(mascara):
+    """Protuberancia fina mas larga del contorno, relativa al ancho de la fruta.
+    Mide un APENDICE (tallo/pedunculo/punta), no una concavidad: el criterio
+    v1 (profundidad maxima de defectos de convexidad) mide hendiduras y quedaba
+    en 0. Procedimiento: cuerpo = apertura de la mascara con un disco de 0.7 del
+    radio inscripto maximo R; resto = mascara - cuerpo; se toma la componente
+    del resto (area >= 8 px) mas alejada del cuerpo; valor = distancia / (2R).
+    Se mide sobre el canvas centrado (resolucion comparable entre fotos)."""
+    m = (mascara > 127).astype(np.uint8)
+    if cv2.countNonZero(m) == 0:
+        return 0.0
+    dt = cv2.distanceTransform(m, cv2.DIST_L2, 5)
+    R = float(dt.max())
+    if R < 3:
+        return 0.0
+    r = max(2, int(round(0.7 * R)))
+    cuerpo = cv2.morphologyEx(m, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1)))
+    resto = cv2.subtract(m, cuerpo)
+    dist = cv2.distanceTransform((1 - cuerpo).astype(np.uint8), cv2.DIST_L2, 5)
+    n, lab, st, _ = cv2.connectedComponentsWithStats(resto, connectivity=8)
+    mejor = 0.0
+    for i in range(1, n):
+        if st[i, cv2.CC_STAT_AREA] >= 8:
+            mejor = max(mejor, float(dist[lab == i].max()))
+    return mejor / (2.0 * R)
+
+
+def estadisticas_tono(img_bgr, mascara):
+    """Estadisticos cromaticos dentro de la mascara con tono CIRCULAR.
+    En OpenCV el tono H va de 0 a 179 y es ciclico: los rojos quedan en ambos
+    extremos (~0 y ~175), y la desviacion estandar lineal que usaba v1
+    (desvio_hue) los ve como muy heterogeneos aunque sean uniformes. Aqui:
+      - desvio_tono: desvio circular ponderado por saturacion, en unidades de H
+        de OpenCV (comparable con desvio_hue de v1);
+      - tono_medio: tono circular medio en grados (0-360);
+      - saturacion_media: S/255 medio;
+      - frac_oscuros: fraccion de pixeles con V < 25% (zonas muy oscuras)."""
+    hsv = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2HSV)
+    dentro = mascara > 0
+    if not dentro.any():
+        return {"desvio_tono": 0.0, "tono_medio": 0.0, "saturacion_media": 0.0, "frac_oscuros": 0.0}
+    H = hsv[:, :, 0][dentro].astype(np.float64)
+    S = hsv[:, :, 1][dentro].astype(np.float64)
+    V = hsv[:, :, 2][dentro].astype(np.float64)
+    sel = S >= SAT_MIN_TONO
+    if sel.sum() < 10:  # casi sin color: el tono no esta definido
+        desvio, tono = 0.0, 0.0
+    else:
+        ang = H[sel] * 2.0 * np.pi / 180.0
+        w = S[sel] / 255.0
+        C, Sn = np.sum(w * np.cos(ang)), np.sum(w * np.sin(ang))
+        Rm = min(1.0, np.hypot(C, Sn) / np.sum(w))
+        desvio = float(np.sqrt(max(0.0, -2.0 * np.log(max(Rm, 1e-9)))) * 180.0 / np.pi / 2.0)
+        tono = float((np.degrees(np.arctan2(Sn, C))) % 360.0)
+    return {"desvio_tono": desvio, "tono_medio": tono,
+            "saturacion_media": float(S.mean() / 255.0),
+            "frac_oscuros": float(np.mean(V < 0.25 * 255))}
+
+
+def centrar_y_escalar_v2(img_bgr, mascara, tam=TAM_CANVAS):
+    """Igual que centrar_y_escalar, pero la mascara reescalada se vuelve a
+    binarizar (v1 dejaba valores intermedios por la interpolacion lineal)."""
+    img_c, masc_c = centrar_y_escalar(img_bgr, mascara, tam)
+    return img_c, ((masc_c > 127).astype(np.uint8)) * 255
+
+
+def profundidad_defecto_v2(mascara):
+    """Mayor defecto de convexidad (hendidura) relativo al alto, independiente de
+    la version de OpenCV.
+
+    CAUSA RAIZ de tiene_tallo = 0 en todo el dataset: extraer_features (v1)
+    exige defectos.ndim == 3. Con OpenCV 4.x convexityDefects devuelve (N,1,4),
+    pero con OpenCV 5.x (el instalado: 5.0.0) devuelve (N,4); la condicion falla,
+    el bloque se salta sin error y la profundidad queda en 0.0 para TODAS las
+    imagenes. Aqui se aplana a (N,4) en ambos casos."""
+    cont, _ = cv2.findContours((mascara > 127).astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if not cont:
+        return 0.0
+    c = max(cont, key=cv2.contourArea)
+    if len(c) <= 3:
+        return 0.0
+    hull_idx = cv2.convexHull(c, returnPoints=False)
+    if hull_idx is None or len(hull_idx) <= 3:
+        return 0.0
+    try:
+        defectos = cv2.convexityDefects(c, hull_idx)
+    except cv2.error:
+        return 0.0
+    if defectos is None:
+        return 0.0
+    prof = float(np.max(np.asarray(defectos).reshape(-1, 4)[:, 3])) / 256.0
+    alto = cv2.boundingRect(c)[3]
+    return prof / alto if alto > 0 else 0.0
+
+
+# ===========================================================================
+# Descriptores cromaticos adicionales (sugerencia docente: "informacion de
+# color como metadato, ej. gradiente de colores") y variantes de medicion
+# ===========================================================================
+def nucleo_mascara(mascara, fraccion=0.08):
+    """Mascara erosionada: deja fuera el borde de la fruta, donde la foto mezcla fruta y fondo.
+    Radio = fraccion * sqrt(area). Si la erosion la vaciara, devuelve la mascara original."""
+    area = cv2.countNonZero(mascara)
+    if area == 0:
+        return mascara
+    r = max(2, int(round(fraccion * np.sqrt(area))))
+    nuc = cv2.erode((mascara > 0).astype(np.uint8) * 255,
+                    cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1)))
+    return nuc if cv2.countNonZero(nuc) >= 0.1 * area else mascara
+
+
+def factores_gris(img_bgr):
+    """Factores por canal del supuesto 'mundo gris' (media de cada canal -> media global) calculados
+    sobre TODA la foto original (con fondo): si se calcularan solo sobre la fruta, un fruto rojo se
+    'corregiria' a gris y perderia el color que se quiere medir."""
+    medias = img_bgr.reshape(-1, 3).astype(np.float64).mean(axis=0)
+    return medias.mean() / np.maximum(medias, 1.0)
+
+
+def aplicar_factores(img_bgr, factores):
+    return np.clip(img_bgr.astype(np.float64) * factores, 0, 255).astype(np.uint8)
+
+
+def _dist_ang(a, b):
+    d = abs(a - b) % 360.0
+    return min(d, 360.0 - d)
+
+
+def estadisticas_color(img_bgr, mascara):
+    """Descriptores cromaticos dentro de la mascara. Ademas de los de estadisticas_tono():
+      - dist_tono_naranja/verde/rojo/amarillo: distancia angular (grados) del tono medio a 30/110/0/60;
+      - croma_medio: croma de Lab sqrt(a^2+b^2), poco sensible a la luminosidad;
+      - gradiente_color: magnitud media del gradiente espacial de (a, b) (cuanto cambia el color de un punto
+        a otro de la fruta; es el 'gradiente de colores' que menciono la docente)."""
+    est = estadisticas_tono(img_bgr, mascara)
+    dentro = mascara > 0
+    lab = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2LAB).astype(np.float32)
+    a, b = lab[:, :, 1] - 128.0, lab[:, :, 2] - 128.0
+    if not dentro.any():
+        croma = grad = 0.0
+    else:
+        croma = float(np.mean(np.hypot(a, b)[dentro]))
+        ab = cv2.GaussianBlur(np.dstack([a, b]), (0, 0), 1.0)
+        gx, gy = cv2.Sobel(ab, cv2.CV_32F, 1, 0, ksize=3), cv2.Sobel(ab, cv2.CV_32F, 0, 1, ksize=3)
+        grad = float(np.mean(np.sqrt((gx ** 2 + gy ** 2).sum(axis=2))[dentro]))
+    t = est["tono_medio"]
+    est.update(dist_tono_naranja=_dist_ang(t, 30.0), dist_tono_verde=_dist_ang(t, 110.0),
+               dist_tono_rojo=_dist_ang(t, 0.0), dist_tono_amarillo=_dist_ang(t, 60.0),
+               croma_medio=croma, gradiente_color=grad)
+    est.update(_fracciones_de_tono(img_bgr, mascara))
+    return est
+
+
+# Familias de tono (grados) para las fracciones de color dominante
+FAMILIAS_TONO = {"frac_rojo": ((345.0, 360.0), (0.0, 15.0)), "frac_naranja": ((15.0, 45.0),),
+                 "frac_amarillo": ((45.0, 70.0),), "frac_verde": ((70.0, 170.0),)}
+
+
+def _fracciones_de_tono(img_bgr, mascara):
+    """Fraccion de los pixeles con color definido (S >= SAT_MIN_TONO) dentro de la mascara cuyo tono cae en cada
+    familia (rojo, naranja, amarillo, verde). Describe el color DOMINANTE, no solo el tono medio: una manzana
+    rojo-amarilla tiene un tono medio naranja pero sus pixeles no son mayoritariamente naranjas."""
+    hsv = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2HSV)
+    dentro = mascara > 0
+    sel = dentro & (hsv[:, :, 1] >= SAT_MIN_TONO)
+    out = {k: 0.0 for k in FAMILIAS_TONO}
+    if sel.sum() >= 10:
+        grados = hsv[:, :, 0][sel].astype(np.float64) * 2.0
+        for k, rangos in FAMILIAS_TONO.items():
+            out[k] = float(np.mean(np.any([(grados >= a) & (grados < b) for a, b in rangos], axis=0)))
+    return out
+
+
+def textura_normalizada(img_bgr, mascara):
+    """Varianza del laplaciano dividida por el contraste de la fruta (varianza de grises) dentro de la mascara:
+    menos dependiente de la iluminacion y del tipo de fruta que la varianza cruda."""
+    gris = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
+    dentro = mascara > 0
+    if not dentro.any():
+        return 0.0
+    lap = cv2.Laplacian(gris, cv2.CV_64F)
+    return float(np.var(lap[dentro]) / (np.var(gris[dentro].astype(np.float64)) + 1.0))
+
+
+# ---------------------------------------------------------------------------
+# Normalizacion de la iluminacion (paso de preprocesamiento previo a segmentar y medir)
+# ---------------------------------------------------------------------------
+NORMALIZACIONES = ("ninguna", "estirar", "gris_mundo", "gamma_media")
+
+
+def normalizar_iluminacion(img_bgr, modo="ninguna"):
+    """Reduce la dependencia de la exposicion y del tinte de la foto ANTES de segmentar y medir. No cambia la
+    definicion de ninguna variable: solo las condiciones en que se miden.
+      'estirar'    : estiramiento de contraste (percentiles 1 y 99 de la luminosidad de toda la foto);
+      'gris_mundo' : balance de blancos del supuesto 'mundo gris' (iguala la media de los tres canales);
+      'gamma_media': gamma que lleva la luminosidad media de la foto a 0.5 (limitada a [0.4, 2.5])."""
+    if modo == "ninguna":
+        return img_bgr
+    if modo not in NORMALIZACIONES:
+        raise ValueError(f"normalizacion desconocida: {modo!r} (opciones: {NORMALIZACIONES})")
+    if modo == "gris_mundo":
+        return aplicar_factores(img_bgr, factores_gris(img_bgr))
+    gris = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY).astype(np.float64)
+    if modo == "estirar":
+        lo, hi = np.percentile(gris, [1, 99])
+        if hi - lo < 8:
+            return img_bgr
+        return np.clip((img_bgr.astype(np.float64) - lo) * 255.0 / (hi - lo), 0, 255).astype(np.uint8)
+    media = float(np.clip(gris.mean() / 255.0, 0.02, 0.98))                      # gamma_media
+    g = float(np.clip(np.log(0.5) / np.log(media), 0.4, 2.5))
+    return np.clip(255.0 * (img_bgr.astype(np.float64) / 255.0) ** g, 0, 255).astype(np.uint8)
