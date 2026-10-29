@@ -1,0 +1,19 @@
+seccion,clave,medida_continua,operador,valor
+global,version,,,v2
+global,etapa,,,morfologia
+global,segmentador,,,v1
+global,tam_canvas,,,200
+global,normalizacion,,,ninguna
+global,origen_umbrales,,,estrategia 'mediana' sobre el entrenamiento
+global,opciones.tallo,,,convexidad
+global,opciones.tono,,,circular
+global,opciones.extras,,,croma_alto;naranja_dominante
+global,opciones.color,,,mascara
+variable,es_esferica,aspecto_esferico,>=,0.8666666666666667
+variable,cascara_rugosa,textura_laplaciano,>=,312.88237629857326
+variable,tiene_tallo,defecto_convexidad,>=,0.1689745508982036
+variable,densidad_alta,solidez,>=,0.8850111205803488
+variable,pigmentacion_oscura,gris_promedio,<=,110.9799789251844
+variable,color_uniforme,desvio_tono,<=,5.72886484715916
+variable,croma_alto,croma_medio,>=,45.9260368347168
+variable,naranja_dominante,frac_naranja,>=,0.18042436687200547

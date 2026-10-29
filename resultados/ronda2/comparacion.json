@@ -1,0 +1,635 @@
+{
+ "original_reentrenado": {
+  "rol": "comparador: receta del primer avance",
+  "rho": [
+   0.85,
+   0.7
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    35,
+    104
+   ],
+   "cadena_manzanas": [
+    18,
+    66
+   ],
+   "tipo_exactitud": [
+    47,
+    104
+   ],
+   "tipo_f1": 0.41287217200347276,
+   "calidad_aislada": 0.6666666666666666,
+   "calidad_aislada_f1": 0.6387388761759472,
+   "calidad_acoplada": [
+    18,
+    30
+   ],
+   "derivadas_ok": [
+    30,
+    66
+   ],
+   "derivadas_mal": [
+    11,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.2214765100671141,
+    0.5
+   ],
+   "ic_tipo": [
+    0.32857142857142857,
+    0.6091954022988506
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "compatible_minima": {
+  "rol": "solo correcciones y compromisos (sin descriptores adicionales)",
+  "rho": [
+   0.7,
+   0.35
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    54,
+    104
+   ],
+   "cadena_manzanas": [
+    46,
+    66
+   ],
+   "tipo_exactitud": [
+    74,
+    104
+   ],
+   "tipo_f1": 0.46913580246913583,
+   "calidad_aislada": 0.696969696969697,
+   "calidad_aislada_f1": 0.698488645857067,
+   "calidad_acoplada": [
+    46,
+    66
+   ],
+   "derivadas_ok": [
+    66,
+    66
+   ],
+   "derivadas_mal": [
+    30,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.35802469135802467,
+    0.6641221374045801
+   ],
+   "ic_tipo": [
+    0.5188679245283019,
+    0.8738738738738738
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "principal": {
+  "rol": "PRINCIPAL compatible con el primer avance",
+  "rho": [
+   0.6,
+   0.45
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    55,
+    104
+   ],
+   "cadena_manzanas": [
+    43,
+    66
+   ],
+   "tipo_exactitud": [
+    70,
+    104
+   ],
+   "tipo_f1": 0.5372549019607843,
+   "calidad_aislada": 0.7424242424242424,
+   "calidad_aislada_f1": 0.7399004657917575,
+   "calidad_acoplada": [
+    43,
+    58
+   ],
+   "derivadas_ok": [
+    58,
+    66
+   ],
+   "derivadas_mal": [
+    21,
+    38
+   ],
+   "novedades_e1": 4,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.3300970873786408,
+    0.7122302158273381
+   ],
+   "ic_tipo": [
+    0.4789915966386555,
+    0.8392857142857143
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_sin_tope": {
+  "rol": "experimental: sin el tope de 14 categorias del primer avance",
+  "rho": [
+   0.85,
+   0.55
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    75,
+    104
+   ],
+   "cadena_manzanas": [
+    52,
+    66
+   ],
+   "tipo_exactitud": [
+    83,
+    104
+   ],
+   "tipo_f1": 0.730753883976265,
+   "calidad_aislada": 0.8484848484848485,
+   "calidad_aislada_f1": 0.8534238822863611,
+   "calidad_acoplada": [
+    52,
+    60
+   ],
+   "derivadas_ok": [
+    60,
+    66
+   ],
+   "derivadas_mal": [
+    15,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 1,
+   "ic_cadena_total": [
+    0.5517241379310345,
+    0.8613138686131386
+   ],
+   "ic_tipo": [
+    0.6239316239316239,
+    0.9180327868852459
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_medianas": {
+  "rol": "experimental: umbrales morfologicos por mediana",
+  "rho": [
+   0.3,
+   0.45
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    59,
+    104
+   ],
+   "cadena_manzanas": [
+    49,
+    66
+   ],
+   "tipo_exactitud": [
+    76,
+    104
+   ],
+   "tipo_f1": 0.5048850574712643,
+   "calidad_aislada": 0.7424242424242424,
+   "calidad_aislada_f1": 0.7399004657917575,
+   "calidad_acoplada": [
+    49,
+    66
+   ],
+   "derivadas_ok": [
+    66,
+    66
+   ],
+   "derivadas_mal": [
+    28,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.3763440860215054,
+    0.726027397260274
+   ],
+   "ic_tipo": [
+    0.5714285714285714,
+    0.8514851485148515
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_protuberancia": {
+  "rol": "experimental: tiene_tallo por protuberancia (sin anotaciones)",
+  "rho": [
+   0.6,
+   0.45
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    60,
+    104
+   ],
+   "cadena_manzanas": [
+    45,
+    66
+   ],
+   "tipo_exactitud": [
+    75,
+    104
+   ],
+   "tipo_f1": 0.5871373836891077,
+   "calidad_aislada": 0.7424242424242424,
+   "calidad_aislada_f1": 0.7399004657917575,
+   "calidad_acoplada": [
+    45,
+    60
+   ],
+   "derivadas_ok": [
+    60,
+    66
+   ],
+   "derivadas_mal": [
+    18,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.3894736842105263,
+    0.7477477477477478
+   ],
+   "ic_tipo": [
+    0.5263157894736842,
+    0.8695652173913043
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "alt_orden_canonico": {
+  "rol": "alternativa compatible: orden de presentacion canonico (determinista)",
+  "rho": [
+   0.55,
+   0.35
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    63,
+    104
+   ],
+   "cadena_manzanas": [
+    52,
+    66
+   ],
+   "tipo_exactitud": [
+    75,
+    104
+   ],
+   "tipo_f1": 0.554985754985755,
+   "calidad_aislada": 0.803030303030303,
+   "calidad_aislada_f1": 0.8147695441813089,
+   "calidad_acoplada": [
+    52,
+    64
+   ],
+   "derivadas_ok": [
+    64,
+    66
+   ],
+   "derivadas_mal": [
+    26,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 1,
+   "ic_cadena_total": [
+    0.40869565217391307,
+    0.7790697674418605
+   ],
+   "ic_tipo": [
+    0.52,
+    0.88
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_comite": {
+  "rol": "experimental: comite de 11 redes ART1 (cambia la arquitectura; costo 11x)",
+  "rho": [
+   0.55,
+   0.45
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    63,
+    104
+   ],
+   "cadena_manzanas": [
+    49,
+    66
+   ],
+   "tipo_exactitud": [
+    77,
+    104
+   ],
+   "tipo_f1": 0.6096491228070176,
+   "calidad_aislada": 0.7575757575757576,
+   "calidad_aislada_f1": 0.7807781649245064,
+   "calidad_acoplada": [
+    49,
+    63
+   ],
+   "derivadas_ok": [
+    63,
+    66
+   ],
+   "derivadas_mal": [
+    23,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 3,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.4166666666666667,
+    0.7738095238095238
+   ],
+   "ic_tipo": [
+    0.5576923076923077,
+    0.8924731182795699
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_segmentacion_v2": {
+  "rol": "experimental: segmentacion v2",
+  "rho": [
+   0.45,
+   0.35
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    40,
+    104
+   ],
+   "cadena_manzanas": [
+    26,
+    66
+   ],
+   "tipo_exactitud": [
+    74,
+    104
+   ],
+   "tipo_f1": 0.5888888888888889,
+   "calidad_aislada": 0.42424242424242425,
+   "calidad_aislada_f1": 0.4520399141088796,
+   "calidad_acoplada": [
+    26,
+    60
+   ],
+   "derivadas_ok": [
+    60,
+    66
+   ],
+   "derivadas_mal": [
+    24,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 13,
+   "ic_cadena_total": [
+    0.3014705882352941,
+    0.5
+   ],
+   "ic_tipo": [
+    0.5777777777777777,
+    0.8235294117647058
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_normalizacion": {
+  "rol": "experimental: estiramiento de contraste antes de medir (mas estable, menos exacto)",
+  "rho": [
+   0.55,
+   0.35
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    39,
+    104
+   ],
+   "cadena_manzanas": [
+    36,
+    66
+   ],
+   "tipo_exactitud": [
+    52,
+    104
+   ],
+   "tipo_f1": 0.270521424883841,
+   "calidad_aislada": 0.7424242424242424,
+   "calidad_aislada_f1": 0.7450442045404061,
+   "calidad_acoplada": [
+    36,
+    49
+   ],
+   "derivadas_ok": [
+    49,
+    66
+   ],
+   "derivadas_mal": [
+    34,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.25,
+    0.5238095238095238
+   ],
+   "ic_tipo": [
+    0.35398230088495575,
+    0.6781609195402298
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_medianas_ronda1": {
+  "rol": "experimental: receta de medianas de la ronda 1 (sin tope)",
+  "rho": [
+   0.75,
+   0.55
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    57,
+    104
+   ],
+   "cadena_manzanas": [
+    39,
+    66
+   ],
+   "tipo_exactitud": [
+    69,
+    104
+   ],
+   "tipo_f1": 0.5959558057119033,
+   "calidad_aislada": 0.803030303030303,
+   "calidad_aislada_f1": 0.8036658074930355,
+   "calidad_acoplada": [
+    39,
+    51
+   ],
+   "derivadas_ok": [
+    51,
+    66
+   ],
+   "derivadas_mal": [
+    13,
+    38
+   ],
+   "novedades_e1": 7,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.42592592592592593,
+    0.6896551724137931
+   ],
+   "ic_tipo": [
+    0.5299145299145299,
+    0.8289473684210527
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "original_entregado": {
+  "rol": "diagnostico historico (entrenado con fotos del informe: optimista)",
+  "rho": [],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    44,
+    104
+   ],
+   "cadena_manzanas": [
+    21,
+    66
+   ],
+   "tipo_exactitud": [
+    55,
+    104
+   ],
+   "tipo_f1": 0.508641975308642,
+   "calidad_aislada": 0.6818181818181818,
+   "calidad_aislada_f1": 0.6686192995716805,
+   "calidad_acoplada": [
+    21,
+    32
+   ],
+   "derivadas_ok": [
+    32,
+    66
+   ],
+   "derivadas_mal": [
+    10,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.2857142857142857,
+    0.5350877192982456
+   ],
+   "ic_tipo": [
+    0.410958904109589,
+    0.6391752577319587
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ }
+}

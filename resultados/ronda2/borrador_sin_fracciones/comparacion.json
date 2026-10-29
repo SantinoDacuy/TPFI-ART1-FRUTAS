@@ -1,0 +1,423 @@
+{
+ "original_reentrenado": {
+  "rol": "comparador: receta del primer avance",
+  "rho": [
+   0.85,
+   0.7
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    35,
+    104
+   ],
+   "cadena_manzanas": [
+    18,
+    66
+   ],
+   "tipo_exactitud": [
+    47,
+    104
+   ],
+   "tipo_f1": 0.41287217200347276,
+   "calidad_aislada": 0.6666666666666666,
+   "calidad_aislada_f1": 0.6387388761759472,
+   "calidad_acoplada": [
+    18,
+    30
+   ],
+   "derivadas_ok": [
+    30,
+    66
+   ],
+   "derivadas_mal": [
+    11,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.2214765100671141,
+    0.5
+   ],
+   "ic_tipo": [
+    0.32857142857142857,
+    0.6091954022988506
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "compatible_minima": {
+  "rol": "solo correcciones y compromisos (sin descriptores adicionales)",
+  "rho": [
+   0.7,
+   0.35
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    54,
+    104
+   ],
+   "cadena_manzanas": [
+    46,
+    66
+   ],
+   "tipo_exactitud": [
+    74,
+    104
+   ],
+   "tipo_f1": 0.46913580246913583,
+   "calidad_aislada": 0.696969696969697,
+   "calidad_aislada_f1": 0.698488645857067,
+   "calidad_acoplada": [
+    46,
+    66
+   ],
+   "derivadas_ok": [
+    66,
+    66
+   ],
+   "derivadas_mal": [
+    30,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.35802469135802467,
+    0.6641221374045801
+   ],
+   "ic_tipo": [
+    0.5188679245283019,
+    0.8738738738738738
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "principal": {
+  "rol": "PRINCIPAL compatible con el primer avance",
+  "rho": [
+   0.65,
+   0.35
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    62,
+    104
+   ],
+   "cadena_manzanas": [
+    49,
+    66
+   ],
+   "tipo_exactitud": [
+    79,
+    104
+   ],
+   "tipo_f1": 0.6153846153846153,
+   "calidad_aislada": 0.7424242424242424,
+   "calidad_aislada_f1": 0.7399004657917575,
+   "calidad_acoplada": [
+    49,
+    66
+   ],
+   "derivadas_ok": [
+    66,
+    66
+   ],
+   "derivadas_mal": [
+    24,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.40707964601769914,
+    0.7657657657657657
+   ],
+   "ic_tipo": [
+    0.5789473684210527,
+    0.9067796610169492
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_sin_tope": {
+  "rol": "experimental: sin el tope de 14 categorias del primer avance",
+  "rho": [
+   0.7,
+   0.55
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    68,
+    104
+   ],
+   "cadena_manzanas": [
+    55,
+    66
+   ],
+   "tipo_exactitud": [
+    78,
+    104
+   ],
+   "tipo_f1": 0.6106172839506172,
+   "calidad_aislada": 0.8484848484848485,
+   "calidad_aislada_f1": 0.8453267162944581,
+   "calidad_acoplada": [
+    55,
+    65
+   ],
+   "derivadas_ok": [
+    65,
+    66
+   ],
+   "derivadas_mal": [
+    25,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.47058823529411764,
+    0.8115942028985508
+   ],
+   "ic_tipo": [
+    0.5684210526315789,
+    0.8940397350993378
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_medianas": {
+  "rol": "experimental: umbrales morfologicos por mediana",
+  "rho": [
+   0.3,
+   0.35
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    59,
+    104
+   ],
+   "cadena_manzanas": [
+    49,
+    66
+   ],
+   "tipo_exactitud": [
+    75,
+    104
+   ],
+   "tipo_f1": 0.5041466608467918,
+   "calidad_aislada": 0.7424242424242424,
+   "calidad_aislada_f1": 0.7399004657917575,
+   "calidad_acoplada": [
+    49,
+    65
+   ],
+   "derivadas_ok": [
+    65,
+    66
+   ],
+   "derivadas_mal": [
+    27,
+    38
+   ],
+   "novedades_e1": 2,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.375,
+    0.7284768211920529
+   ],
+   "ic_tipo": [
+    0.5595238095238095,
+    0.8461538461538461
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_protuberancia": {
+  "rol": "experimental: tiene_tallo por protuberancia (sin anotaciones)",
+  "rho": [
+   0.6,
+   0.35
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    58,
+    104
+   ],
+   "cadena_manzanas": [
+    48,
+    66
+   ],
+   "tipo_exactitud": [
+    75,
+    104
+   ],
+   "tipo_f1": 0.5253438544577785,
+   "calidad_aislada": 0.7424242424242424,
+   "calidad_aislada_f1": 0.7399004657917575,
+   "calidad_acoplada": [
+    48,
+    65
+   ],
+   "derivadas_ok": [
+    65,
+    66
+   ],
+   "derivadas_mal": [
+    27,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.3684210526315789,
+    0.7352941176470589
+   ],
+   "ic_tipo": [
+    0.5357142857142857,
+    0.88
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "exp_medianas_ronda1": {
+  "rol": "experimental: receta de medianas de la ronda 1 (sin tope)",
+  "rho": [
+   0.75,
+   0.55
+  ],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    57,
+    104
+   ],
+   "cadena_manzanas": [
+    39,
+    66
+   ],
+   "tipo_exactitud": [
+    69,
+    104
+   ],
+   "tipo_f1": 0.5959558057119033,
+   "calidad_aislada": 0.803030303030303,
+   "calidad_aislada_f1": 0.8036658074930355,
+   "calidad_acoplada": [
+    39,
+    51
+   ],
+   "derivadas_ok": [
+    51,
+    66
+   ],
+   "derivadas_mal": [
+    13,
+    38
+   ],
+   "novedades_e1": 7,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.42592592592592593,
+    0.6896551724137931
+   ],
+   "ic_tipo": [
+    0.5299145299145299,
+    0.8289473684210527
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ },
+ "original_entregado": {
+  "rol": "diagnostico historico (entrenado con fotos del informe: optimista)",
+  "rho": [],
+  "informe": {
+   "n": 104,
+   "n_manzanas": 66,
+   "cadena_total": [
+    44,
+    104
+   ],
+   "cadena_manzanas": [
+    21,
+    66
+   ],
+   "tipo_exactitud": [
+    55,
+    104
+   ],
+   "tipo_f1": 0.508641975308642,
+   "calidad_aislada": 0.6818181818181818,
+   "calidad_aislada_f1": 0.6686192995716805,
+   "calidad_acoplada": [
+    21,
+    32
+   ],
+   "derivadas_ok": [
+    32,
+    66
+   ],
+   "derivadas_mal": [
+    10,
+    38
+   ],
+   "novedades_e1": 0,
+   "sin_etiqueta_e1": 0,
+   "novedades_e2_aislada": 0,
+   "sin_etiqueta_e2_aislada": 0,
+   "ic_cadena_total": [
+    0.2857142857142857,
+    0.5350877192982456
+   ],
+   "ic_tipo": [
+    0.410958904109589,
+    0.6391752577319587
+   ],
+   "base_tipo": 0.6346153846153846,
+   "base_tipo_f1": 0.25882352941176473,
+   "base_cadena_manzanas": 0.45454545454545453
+  }
+ }
+}

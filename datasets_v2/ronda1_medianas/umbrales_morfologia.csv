@@ -1,0 +1,9 @@
+variable,medida_continua,operador,umbral
+es_esferica,aspecto_esferico,>=,0.8555555555555555
+cascara_rugosa,textura_laplaciano,>=,333.80040140811536
+tiene_tallo,tallo_relativo,>=,0.3126115779788713
+densidad_alta,solidez,>=,0.905396402398401
+pigmentacion_oscura,gris_promedio,<=,113.12033968516984
+color_uniforme,desvio_tono,<=,5.514752921532501
+tono_calido,dist_tono_naranja,<=,27.259289293465713
+saturacion_alta,saturacion_media,>=,0.7205814783037755

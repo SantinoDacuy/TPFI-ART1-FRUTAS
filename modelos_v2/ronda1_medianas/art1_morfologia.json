@@ -1,0 +1,673 @@
+{
+  "formato_version": 2,
+  "n_features": 8,
+  "rho": 0.55,
+  "L": 2.0,
+  "max_categorias": 50,
+  "politica_nulo": "categoria_propia",
+  "top_down": [
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "preprocesamiento": {
+    "version": "v2",
+    "etapa": "morfologia",
+    "segmentador": "v1",
+    "tam_canvas": 200,
+    "opciones": {
+      "tallo": "protuberancia",
+      "tono": "circular",
+      "extras": [
+        "tono_calido",
+        "saturacion_alta"
+      ]
+    },
+    "cols_features": [
+      "es_esferica",
+      "cascara_rugosa",
+      "tiene_tallo",
+      "densidad_alta",
+      "pigmentacion_oscura",
+      "color_uniforme",
+      "tono_calido",
+      "saturacion_alta"
+    ],
+    "reglas": {
+      "es_esferica": {
+        "crudo": "aspecto_esferico",
+        "op": ">="
+      },
+      "cascara_rugosa": {
+        "crudo": "textura_laplaciano",
+        "op": ">="
+      },
+      "tiene_tallo": {
+        "crudo": "tallo_relativo",
+        "op": ">="
+      },
+      "densidad_alta": {
+        "crudo": "solidez",
+        "op": ">="
+      },
+      "pigmentacion_oscura": {
+        "crudo": "gris_promedio",
+        "op": "<="
+      },
+      "color_uniforme": {
+        "crudo": "desvio_tono",
+        "op": "<="
+      },
+      "tono_calido": {
+        "crudo": "dist_tono_naranja",
+        "op": "<="
+      },
+      "saturacion_alta": {
+        "crudo": "saturacion_media",
+        "op": ">="
+      }
+    },
+    "umbrales": {
+      "es_esferica": 0.8555555555555555,
+      "cascara_rugosa": 333.80040140811536,
+      "tiene_tallo": 0.3126115779788713,
+      "densidad_alta": 0.905396402398401,
+      "pigmentacion_oscura": 113.12033968516984,
+      "color_uniforme": 5.514752921532501,
+      "tono_calido": 27.259289293465713,
+      "saturacion_alta": 0.7205814783037755
+    },
+    "origen_umbrales": "estrategia 'mediana' sobre el entrenamiento",
+    "notas": "'carozo' es el alias historico de manzana. densidad_alta, es_pesada y textura_firme son aproximaciones visuales (solidez del contorno, area x solidez, varianza del laplaciano): no miden densidad fisica, masa ni firmeza mecanica."
+  },
+  "metadata_extra": {
+    "cols_features": [
+      "es_esferica",
+      "cascara_rugosa",
+      "tiene_tallo",
+      "densidad_alta",
+      "pigmentacion_oscura",
+      "color_uniforme",
+      "tono_calido",
+      "saturacion_alta"
+    ],
+    "cols_metadata": [
+      "tipo_real"
+    ],
+    "n_muestras_entrenamiento": 190,
+    "mapeo_clusters": {
+      "0": {
+        "n": 5,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 5
+        }
+      },
+      "1": {
+        "n": 5,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 5
+        }
+      },
+      "2": {
+        "n": 1,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 1
+        }
+      },
+      "3": {
+        "n": 1,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 1
+        }
+      },
+      "4": {
+        "n": 2,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 2
+        }
+      },
+      "5": {
+        "n": 30,
+        "etiqueta": "tropical",
+        "estado": "etiquetada",
+        "pureza": 0.6333,
+        "distribucion": {
+          "carozo": 11,
+          "tropical": 19
+        }
+      },
+      "6": {
+        "n": 1,
+        "etiqueta": "tropical",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "tropical": 1
+        }
+      },
+      "7": {
+        "n": 5,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.8,
+        "distribucion": {
+          "carozo": 4,
+          "citrico": 1
+        }
+      },
+      "8": {
+        "n": 1,
+        "etiqueta": "tropical",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "tropical": 1
+        }
+      },
+      "9": {
+        "n": 18,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 18
+        }
+      },
+      "10": {
+        "n": 31,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.9032,
+        "distribucion": {
+          "carozo": 28,
+          "tropical": 3
+        }
+      },
+      "11": {
+        "n": 2,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 2
+        }
+      },
+      "12": {
+        "n": 7,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.5714,
+        "distribucion": {
+          "carozo": 4,
+          "citrico": 2,
+          "tropical": 1
+        }
+      },
+      "13": {
+        "n": 8,
+        "etiqueta": "tropical",
+        "estado": "etiquetada",
+        "pureza": 0.75,
+        "distribucion": {
+          "carozo": 2,
+          "tropical": 6
+        }
+      },
+      "14": {
+        "n": 1,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 1
+        }
+      },
+      "15": {
+        "n": 5,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 5
+        }
+      },
+      "16": {
+        "n": 1,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 1
+        }
+      },
+      "17": {
+        "n": 2,
+        "etiqueta": "carozo",
+        "estado": "etiquetada_por_desempate",
+        "pureza": 0.5,
+        "distribucion": {
+          "carozo": 1,
+          "tropical": 1
+        },
+        "empatadas": [
+          "carozo",
+          "tropical"
+        ]
+      },
+      "18": {
+        "n": 4,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.75,
+        "distribucion": {
+          "carozo": 3,
+          "tropical": 1
+        }
+      },
+      "19": {
+        "n": 1,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 1
+        }
+      },
+      "20": {
+        "n": 5,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 5
+        }
+      },
+      "21": {
+        "n": 5,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 5
+        }
+      },
+      "22": {
+        "n": 8,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.875,
+        "distribucion": {
+          "carozo": 7,
+          "citrico": 1
+        }
+      },
+      "23": {
+        "n": 4,
+        "etiqueta": "carozo",
+        "estado": "etiquetada_por_desempate",
+        "pureza": 0.5,
+        "distribucion": {
+          "carozo": 2,
+          "citrico": 2
+        },
+        "empatadas": [
+          "carozo",
+          "citrico"
+        ]
+      },
+      "24": {
+        "n": 36,
+        "etiqueta": "citrico",
+        "estado": "etiquetada",
+        "pureza": 0.7778,
+        "distribucion": {
+          "carozo": 8,
+          "citrico": 28
+        }
+      },
+      "25": {
+        "n": 1,
+        "etiqueta": "citrico",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "citrico": 1
+        }
+      }
+    },
+    "reinferencia_entrenamiento": {
+      "n": 190,
+      "n_resuenan": 190,
+      "n_sin_resonancia": 0,
+      "distribucion_sin_resonancia": {}
+    },
+    "entrenamiento": {
+      "csv": "morfologia_entrenamiento.csv",
+      "csv_sha256": "9d7f1adf14274355153f969b9a8f550710ad9435f749b718850984678817c82d",
+      "esquema": "morfologia",
+      "orden": "original",
+      "semilla": null,
+      "epocas_pedidas": 10,
+      "epocas_realizadas": 3,
+      "estable": true,
+      "modo_mapeo": "prototipos_finales",
+      "desempate": "mayoritaria_global",
+      "pureza_online": 0.6947,
+      "pureza_final": 0.8263,
+      "cobertura_final": 1.0,
+      "n_por_etiqueta": {
+        "carozo": 122,
+        "citrico": 35,
+        "tropical": 33
+      },
+      "col_referencia": "tipo_real"
+    },
+    "procedencia": {
+      "semilla_particion": 0,
+      "manifiesto": "datasets_v2/manifiesto_imagenes.csv",
+      "umbrales_calculados_con": "solo la particion de entrenamiento",
+      "rho_elegido_con": "particion de validacion",
+      "script": "scripts/experimentos.py final",
+      "variante": {
+        "nombre": "original",
+        "segmentador": "v1",
+        "legado": false,
+        "tallo": "protuberancia",
+        "tono": "circular",
+        "extras_morf": [
+          "tono_calido",
+          "saturacion_alta"
+        ],
+        "extras_cal": [
+          "sin_oscurecimiento"
+        ],
+        "umbral_morf": "mediana",
+        "umbral_cal": "mediana",
+        "cobertura": "todas",
+        "mapeo": "prototipos_finales",
+        "desempate": "mayoritaria_global",
+        "rho_morf": null,
+        "rho_cal": null,
+        "epocas": 10,
+        "politica_nulo": "categoria_propia"
+      },
+      "n_particion": {
+        "entrenamiento": 190,
+        "validacion": 71,
+        "prueba": 78
+      }
+    }
+  }
+}

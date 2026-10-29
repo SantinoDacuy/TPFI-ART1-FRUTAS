@@ -1,0 +1,319 @@
+{
+  "formato_version": 2,
+  "n_features": 8,
+  "rho": 0.3,
+  "L": 2.0,
+  "max_categorias": 50,
+  "politica_nulo": "categoria_propia",
+  "tipo_modelo": "fotografias",
+  "top_down": [
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1
+    ]
+  ],
+  "preprocesamiento": {
+    "version": "v2",
+    "etapa": "morfologia",
+    "segmentador": "v1",
+    "tam_canvas": 200,
+    "normalizacion": "ninguna",
+    "origen_umbrales": "estrategia 'mediana' sobre el entrenamiento",
+    "opciones": {
+      "tallo": "convexidad",
+      "tono": "circular",
+      "extras": [
+        "croma_alto",
+        "naranja_dominante"
+      ],
+      "color": "mascara"
+    },
+    "cols_features": [
+      "es_esferica",
+      "cascara_rugosa",
+      "tiene_tallo",
+      "densidad_alta",
+      "pigmentacion_oscura",
+      "color_uniforme",
+      "croma_alto",
+      "naranja_dominante"
+    ],
+    "reglas": {
+      "es_esferica": {
+        "crudo": "aspecto_esferico",
+        "op": ">="
+      },
+      "cascara_rugosa": {
+        "crudo": "textura_laplaciano",
+        "op": ">="
+      },
+      "tiene_tallo": {
+        "crudo": "defecto_convexidad",
+        "op": ">="
+      },
+      "densidad_alta": {
+        "crudo": "solidez",
+        "op": ">="
+      },
+      "pigmentacion_oscura": {
+        "crudo": "gris_promedio",
+        "op": "<="
+      },
+      "color_uniforme": {
+        "crudo": "desvio_tono",
+        "op": "<="
+      },
+      "croma_alto": {
+        "crudo": "croma_medio",
+        "op": ">="
+      },
+      "naranja_dominante": {
+        "crudo": "frac_naranja",
+        "op": ">="
+      }
+    },
+    "umbrales": {
+      "es_esferica": 0.8666666666666667,
+      "cascara_rugosa": 312.88237629857326,
+      "tiene_tallo": 0.1689745508982036,
+      "densidad_alta": 0.8850111205803488,
+      "pigmentacion_oscura": 110.9799789251844,
+      "color_uniforme": 5.72886484715916,
+      "croma_alto": 45.9260368347168,
+      "naranja_dominante": 0.18042436687200547
+    }
+  },
+  "metadata_extra": {
+    "cols_features": [
+      "es_esferica",
+      "cascara_rugosa",
+      "tiene_tallo",
+      "densidad_alta",
+      "pigmentacion_oscura",
+      "color_uniforme",
+      "croma_alto",
+      "naranja_dominante"
+    ],
+    "cols_metadata": [
+      "tipo_real"
+    ],
+    "n_muestras_entrenamiento": 235,
+    "mapeo_clusters": {
+      "0": {
+        "n": 19,
+        "etiqueta": "tropical",
+        "estado": "etiquetada",
+        "pureza": 0.9474,
+        "distribucion": {
+          "carozo": 1,
+          "tropical": 18
+        }
+      },
+      "1": {
+        "n": 4,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.75,
+        "distribucion": {
+          "carozo": 3,
+          "tropical": 1
+        }
+      },
+      "2": {
+        "n": 5,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 5
+        }
+      },
+      "3": {
+        "n": 57,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.9649,
+        "distribucion": {
+          "carozo": 55,
+          "tropical": 2
+        }
+      },
+      "4": {
+        "n": 29,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.6552,
+        "distribucion": {
+          "carozo": 19,
+          "citrico": 10
+        }
+      },
+      "5": {
+        "n": 39,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.5128,
+        "distribucion": {
+          "carozo": 20,
+          "citrico": 1,
+          "tropical": 18
+        }
+      },
+      "6": {
+        "n": 46,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.5652,
+        "distribucion": {
+          "carozo": 26,
+          "citrico": 20
+        }
+      },
+      "7": {
+        "n": 7,
+        "etiqueta": "citrico",
+        "estado": "etiquetada",
+        "pureza": 0.7143,
+        "distribucion": {
+          "citrico": 5,
+          "tropical": 2
+        }
+      },
+      "8": {
+        "n": 29,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.8276,
+        "distribucion": {
+          "carozo": 24,
+          "citrico": 5
+        }
+      }
+    },
+    "reinferencia_entrenamiento": {
+      "n": 235,
+      "n_resuenan": 235,
+      "n_sin_resonancia": 0,
+      "distribucion_sin_resonancia": {}
+    },
+    "entrenamiento": {
+      "csv": "morfologia_entrenamiento.csv",
+      "csv_sha256": "94a35f18a09641793256f7cd71d52aa9dd2988ba6e2e560e2a2969777ac449e5",
+      "esquema": "morfologia",
+      "orden": "original",
+      "semilla": null,
+      "epocas_pedidas": 1,
+      "epocas_realizadas": 1,
+      "estable": false,
+      "modo_mapeo": "prototipos_finales",
+      "desempate": "indeterminada",
+      "pureza_online": 0.7745,
+      "pureza_final": 0.7447,
+      "cobertura_final": 1.0,
+      "n_por_etiqueta": {
+        "carozo": 153,
+        "citrico": 41,
+        "tropical": 41
+      },
+      "col_referencia": "tipo_real"
+    },
+    "procedencia": {
+      "semilla_informe": 8,
+      "manifiesto": "datasets_v2/manifiesto_imagenes.csv",
+      "script": "scripts/final_ronda2.py",
+      "banco": "339 fotos ya inspeccionadas (no es un conjunto externo)",
+      "variante": "experimental_medianas",
+      "rho": 0.3,
+      "orden_presentacion": "densidad_asc (fijado en el orden de filas del CSV de entrenamiento)",
+      "umbrales_calculados_con": "solo las fotos de desarrollo (sin el bloque de informe)"
+    },
+    "preprocesamiento_origen": "datasets_v2/experimental_medianas/preprocesamiento_morfologia.csv",
+    "comprometido_con_el_primer_avance": false
+  }
+}

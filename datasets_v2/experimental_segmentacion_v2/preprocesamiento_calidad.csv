@@ -1,0 +1,17 @@
+seccion,clave,medida_continua,operador,valor
+global,version,,,v2
+global,etapa,,,calidad
+global,segmentador,,,v2
+global,tam_canvas,,,200
+global,normalizacion,,,ninguna
+global,origen_umbrales,,,estrategia 'compromiso' sobre el entrenamiento
+global,opciones.tallo,,,convexidad
+global,opciones.tono,,,circular
+global,opciones.extras,,,croma_alto
+global,opciones.color,,,mascara
+variable,es_grande,area,>=,12535.0
+variable,es_pesada,volumen_proxy,>=,11765.184501158174
+variable,textura_firme,textura_laplaciano,<=,176.89871698824132
+variable,sin_defectos_superficie,defecto_score,<=,0.17237138757942203
+variable,color_homogeneo,desvio_tono,<=,6.868747362366843
+variable,croma_alto,croma_medio,>=,40.53889846801758

@@ -1,0 +1,376 @@
+{
+  "formato_version": 2,
+  "n_features": 8,
+  "rho": 0.45,
+  "L": 2.0,
+  "max_categorias": 50,
+  "politica_nulo": "categoria_propia",
+  "tipo_modelo": "fotografias",
+  "top_down": [
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0
+    ]
+  ],
+  "preprocesamiento": {
+    "version": "v2",
+    "etapa": "morfologia",
+    "segmentador": "v2",
+    "tam_canvas": 200,
+    "normalizacion": "ninguna",
+    "origen_umbrales": "estrategia 'compromiso' sobre el entrenamiento",
+    "opciones": {
+      "tallo": "convexidad",
+      "tono": "circular",
+      "extras": [
+        "croma_alto",
+        "naranja_dominante"
+      ],
+      "color": "mascara"
+    },
+    "cols_features": [
+      "es_esferica",
+      "cascara_rugosa",
+      "tiene_tallo",
+      "densidad_alta",
+      "pigmentacion_oscura",
+      "color_uniforme",
+      "croma_alto",
+      "naranja_dominante"
+    ],
+    "reglas": {
+      "es_esferica": {
+        "crudo": "aspecto_esferico",
+        "op": ">="
+      },
+      "cascara_rugosa": {
+        "crudo": "textura_laplaciano",
+        "op": ">="
+      },
+      "tiene_tallo": {
+        "crudo": "defecto_convexidad",
+        "op": ">="
+      },
+      "densidad_alta": {
+        "crudo": "solidez",
+        "op": ">="
+      },
+      "pigmentacion_oscura": {
+        "crudo": "gris_promedio",
+        "op": "<="
+      },
+      "color_uniforme": {
+        "crudo": "desvio_tono",
+        "op": "<="
+      },
+      "croma_alto": {
+        "crudo": "croma_medio",
+        "op": ">="
+      },
+      "naranja_dominante": {
+        "crudo": "frac_naranja",
+        "op": ">="
+      }
+    },
+    "umbrales": {
+      "es_esferica": 0.8,
+      "cascara_rugosa": 150.0,
+      "tiene_tallo": 0.06,
+      "densidad_alta": 0.9,
+      "pigmentacion_oscura": 130.0,
+      "color_uniforme": 12.0,
+      "croma_alto": 41.671852111816406,
+      "naranja_dominante": 0.27083534991772334
+    }
+  },
+  "metadata_extra": {
+    "cols_features": [
+      "es_esferica",
+      "cascara_rugosa",
+      "tiene_tallo",
+      "densidad_alta",
+      "pigmentacion_oscura",
+      "color_uniforme",
+      "croma_alto",
+      "naranja_dominante"
+    ],
+    "cols_metadata": [
+      "tipo_real"
+    ],
+    "n_muestras_entrenamiento": 235,
+    "mapeo_clusters": {
+      "0": {
+        "n": 2,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 2
+        }
+      },
+      "1": {
+        "n": 25,
+        "etiqueta": "tropical",
+        "estado": "etiquetada",
+        "pureza": 0.64,
+        "distribucion": {
+          "carozo": 9,
+          "tropical": 16
+        }
+      },
+      "2": {
+        "n": 7,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 7
+        }
+      },
+      "3": {
+        "n": 1,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 1
+        }
+      },
+      "4": {
+        "n": 1,
+        "etiqueta": "citrico",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "citrico": 1
+        }
+      },
+      "5": {
+        "n": 27,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.7778,
+        "distribucion": {
+          "carozo": 21,
+          "citrico": 1,
+          "tropical": 5
+        }
+      },
+      "6": {
+        "n": 48,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.9583,
+        "distribucion": {
+          "carozo": 46,
+          "citrico": 2
+        }
+      },
+      "7": {
+        "n": 15,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.6,
+        "distribucion": {
+          "carozo": 9,
+          "tropical": 6
+        }
+      },
+      "8": {
+        "n": 33,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.6667,
+        "distribucion": {
+          "carozo": 22,
+          "tropical": 11
+        }
+      },
+      "9": {
+        "n": 5,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "carozo": 5
+        }
+      },
+      "10": {
+        "n": 25,
+        "etiqueta": "carozo",
+        "estado": "etiquetada",
+        "pureza": 0.8,
+        "distribucion": {
+          "carozo": 20,
+          "citrico": 2,
+          "tropical": 3
+        }
+      },
+      "11": {
+        "n": 46,
+        "etiqueta": "citrico",
+        "estado": "etiquetada",
+        "pureza": 0.7609,
+        "distribucion": {
+          "carozo": 11,
+          "citrico": 35
+        }
+      }
+    },
+    "reinferencia_entrenamiento": {
+      "n": 235,
+      "n_resuenan": 235,
+      "n_sin_resonancia": 0,
+      "distribucion_sin_resonancia": {}
+    },
+    "entrenamiento": {
+      "csv": "morfologia_entrenamiento.csv",
+      "csv_sha256": "7005bc6ea7979816875e68be67ba41f74bb08f292660ab076e452bccabf01a3e",
+      "esquema": "morfologia",
+      "orden": "original",
+      "semilla": null,
+      "epocas_pedidas": 1,
+      "epocas_realizadas": 1,
+      "estable": false,
+      "modo_mapeo": "prototipos_finales",
+      "desempate": "indeterminada",
+      "pureza_online": 0.8,
+      "pureza_final": 0.7872,
+      "cobertura_final": 1.0,
+      "n_por_etiqueta": {
+        "carozo": 153,
+        "citrico": 41,
+        "tropical": 41
+      },
+      "col_referencia": "tipo_real"
+    },
+    "procedencia": {
+      "semilla_informe": 8,
+      "manifiesto": "datasets_v2/manifiesto_imagenes.csv",
+      "script": "scripts/final_ronda2.py",
+      "banco": "339 fotos ya inspeccionadas (no es un conjunto externo)",
+      "variante": "experimental_segmentacion_v2",
+      "rho": 0.45,
+      "orden_presentacion": "densidad_asc (fijado en el orden de filas del CSV de entrenamiento)",
+      "umbrales_calculados_con": "solo las fotos de desarrollo (sin el bloque de informe)"
+    },
+    "preprocesamiento_origen": "datasets_v2/experimental_segmentacion_v2/preprocesamiento_morfologia.csv",
+    "comprometido_con_el_primer_avance": false
+  }
+}

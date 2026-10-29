@@ -1,0 +1,347 @@
+{
+  "formato_version": 2,
+  "n_features": 6,
+  "rho": 0.45,
+  "L": 2.0,
+  "max_categorias": 50,
+  "politica_nulo": "categoria_propia",
+  "top_down": [
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ]
+  ],
+  "preprocesamiento": {
+    "version": "v2",
+    "etapa": "calidad",
+    "segmentador": "v1",
+    "tam_canvas": 200,
+    "opciones": {
+      "tallo": "protuberancia",
+      "tono": "circular",
+      "extras": [
+        "sin_oscurecimiento"
+      ]
+    },
+    "cols_features": [
+      "es_grande",
+      "es_pesada",
+      "textura_firme",
+      "sin_defectos_superficie",
+      "color_homogeneo",
+      "sin_oscurecimiento"
+    ],
+    "reglas": {
+      "es_grande": {
+        "crudo": "area",
+        "op": ">="
+      },
+      "es_pesada": {
+        "crudo": "volumen_proxy",
+        "op": ">="
+      },
+      "textura_firme": {
+        "crudo": "textura_laplaciano",
+        "op": "<="
+      },
+      "sin_defectos_superficie": {
+        "crudo": "defecto_score",
+        "op": "<="
+      },
+      "color_homogeneo": {
+        "crudo": "desvio_tono",
+        "op": "<="
+      },
+      "sin_oscurecimiento": {
+        "crudo": "frac_oscuros",
+        "op": "<="
+      }
+    },
+    "umbrales": {
+      "es_grande": 11108.5,
+      "es_pesada": 9153.424675006132,
+      "textura_firme": 328.7189930424803,
+      "sin_defectos_superficie": 0.17368215921270583,
+      "color_homogeneo": 6.608053535495693,
+      "sin_oscurecimiento": 0.08807000071138935
+    },
+    "origen_umbrales": "estrategia 'mediana' sobre el entrenamiento",
+    "notas": "'carozo' es el alias historico de manzana. densidad_alta, es_pesada y textura_firme son aproximaciones visuales (solidez del contorno, area x solidez, varianza del laplaciano): no miden densidad fisica, masa ni firmeza mecanica."
+  },
+  "metadata_extra": {
+    "cols_features": [
+      "es_grande",
+      "es_pesada",
+      "textura_firme",
+      "sin_defectos_superficie",
+      "color_homogeneo",
+      "sin_oscurecimiento"
+    ],
+    "cols_metadata": [
+      "calidad_real"
+    ],
+    "n_muestras_entrenamiento": 122,
+    "mapeo_clusters": {
+      "0": {
+        "n": 5,
+        "etiqueta": "premium",
+        "estado": "etiquetada",
+        "pureza": 0.6,
+        "distribucion": {
+          "descarte": 2,
+          "premium": 3
+        }
+      },
+      "1": {
+        "n": 3,
+        "etiqueta": "premium",
+        "estado": "etiquetada_por_desempate",
+        "pureza": 0.3333,
+        "distribucion": {
+          "comercial": 1,
+          "descarte": 1,
+          "premium": 1
+        },
+        "empatadas": [
+          "comercial",
+          "descarte",
+          "premium"
+        ]
+      },
+      "2": {
+        "n": 2,
+        "etiqueta": "comercial",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "comercial": 2
+        }
+      },
+      "3": {
+        "n": 6,
+        "etiqueta": "comercial",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "comercial": 6
+        }
+      },
+      "4": {
+        "n": 15,
+        "etiqueta": "descarte",
+        "estado": "etiquetada",
+        "pureza": 0.5333,
+        "distribucion": {
+          "descarte": 8,
+          "premium": 7
+        }
+      },
+      "5": {
+        "n": 2,
+        "etiqueta": "comercial",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "comercial": 2
+        }
+      },
+      "6": {
+        "n": 17,
+        "etiqueta": "premium",
+        "estado": "etiquetada",
+        "pureza": 0.6471,
+        "distribucion": {
+          "comercial": 2,
+          "descarte": 4,
+          "premium": 11
+        }
+      },
+      "7": {
+        "n": 13,
+        "etiqueta": "comercial",
+        "estado": "etiquetada",
+        "pureza": 0.9231,
+        "distribucion": {
+          "comercial": 12,
+          "premium": 1
+        }
+      },
+      "8": {
+        "n": 24,
+        "etiqueta": "descarte",
+        "estado": "etiquetada",
+        "pureza": 0.5833,
+        "distribucion": {
+          "descarte": 14,
+          "premium": 10
+        }
+      },
+      "9": {
+        "n": 29,
+        "etiqueta": "premium",
+        "estado": "etiquetada",
+        "pureza": 0.6207,
+        "distribucion": {
+          "comercial": 9,
+          "descarte": 2,
+          "premium": 18
+        }
+      },
+      "10": {
+        "n": 6,
+        "etiqueta": "premium",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "premium": 6
+        }
+      }
+    },
+    "reinferencia_entrenamiento": {
+      "n": 122,
+      "n_resuenan": 122,
+      "n_sin_resonancia": 0,
+      "distribucion_sin_resonancia": {}
+    },
+    "entrenamiento": {
+      "csv": "calidad_entrenamiento.csv",
+      "csv_sha256": "5ef3d9cab9c7370ac07dcfa81d5f9ead01813fb25be97ff7106a3edb8daeddea",
+      "esquema": "calidad",
+      "orden": "original",
+      "semilla": null,
+      "epocas_pedidas": 10,
+      "epocas_realizadas": 4,
+      "estable": true,
+      "modo_mapeo": "prototipos_finales",
+      "desempate": "mayoritaria_global",
+      "pureza_online": 0.6967,
+      "pureza_final": 0.6803,
+      "cobertura_final": 1.0,
+      "n_por_etiqueta": {
+        "comercial": 34,
+        "descarte": 31,
+        "premium": 57
+      },
+      "col_referencia": "calidad_real"
+    },
+    "procedencia": {
+      "semilla_particion": 0,
+      "manifiesto": "datasets_v2/manifiesto_imagenes.csv",
+      "umbrales_calculados_con": "solo la particion de entrenamiento",
+      "rho_elegido_con": "particion de validacion",
+      "script": "scripts/experimentos.py final",
+      "variante": {
+        "nombre": "original",
+        "segmentador": "v1",
+        "legado": false,
+        "tallo": "protuberancia",
+        "tono": "circular",
+        "extras_morf": [
+          "tono_calido",
+          "saturacion_alta"
+        ],
+        "extras_cal": [
+          "sin_oscurecimiento"
+        ],
+        "umbral_morf": "mediana",
+        "umbral_cal": "mediana",
+        "cobertura": "todas",
+        "mapeo": "prototipos_finales",
+        "desempate": "mayoritaria_global",
+        "rho_morf": null,
+        "rho_cal": null,
+        "epocas": 10,
+        "politica_nulo": "categoria_propia"
+      },
+      "n_particion": {
+        "entrenamiento": 190,
+        "validacion": 71,
+        "prueba": 78
+      }
+    }
+  }
+}

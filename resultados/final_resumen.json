@@ -1,0 +1,737 @@
+{
+ "variante": {
+  "nombre": "original",
+  "segmentador": "v1",
+  "legado": false,
+  "tallo": "protuberancia",
+  "tono": "circular",
+  "extras_morf": [
+   "tono_calido",
+   "saturacion_alta"
+  ],
+  "extras_cal": [
+   "sin_oscurecimiento"
+  ],
+  "umbral_morf": "mediana",
+  "umbral_cal": "mediana",
+  "cobertura": "todas",
+  "mapeo": "prototipos_finales",
+  "desempate": "mayoritaria_global",
+  "rho_morf": null,
+  "rho_cal": null,
+  "epocas": 10,
+  "politica_nulo": "categoria_propia"
+ },
+ "semilla_principal": 0,
+ "n": {
+  "entrenamiento": 190,
+  "validacion": 71,
+  "prueba": 78
+ },
+ "rho": {
+  "morfologia": 0.55,
+  "calidad": 0.45
+ },
+ "mejorado": {
+  "entrenamiento": {
+   "n": 190,
+   "n_manzanas": 122,
+   "n_no_manzanas": 68,
+   "e1_exactitud": 0.8263157894736842,
+   "e1_f1_macro": 0.8016186836793073,
+   "e1_tipo_correcto": 157,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "citrico": 29,
+     "carozo": 6
+    },
+    "tropical": {
+     "carozo": 6,
+     "tropical": 27
+    },
+    "carozo": {
+     "carozo": 101,
+     "citrico": 8,
+     "tropical": 13
+    }
+   },
+   "manzanas_derivadas": 101,
+   "no_manzanas_derivadas": 12,
+   "cadena_manzanas_correctas": 71,
+   "cadena_total_correcta": 127,
+   "cadena_total_exactitud": 0.6684210526315789,
+   "cadena_manzanas_exactitud": 0.5819672131147541,
+   "e2_acoplada_n": 101,
+   "e2_acoplada_correctas": 71,
+   "e2_aislada_n": 122,
+   "e2_aislada_exactitud": 0.680327868852459,
+   "e2_aislada_f1_macro": 0.6890559732664996,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 39,
+     "descarte": 17,
+     "comercial": 1
+    },
+    "comercial": {
+     "comercial": 22,
+     "premium": 12
+    },
+    "descarte": {
+     "descarte": 22,
+     "premium": 9
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.4672131147540984,
+    "f1_macro": 0.2122905027932961
+   },
+   "linea_base_cadena_manzanas": 0.4672131147540984,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.6421052631578947,
+    "f1_macro": 0.2606837606837607
+   }
+  },
+  "validacion": {
+   "n": 71,
+   "n_manzanas": 46,
+   "n_no_manzanas": 25,
+   "e1_exactitud": 0.7183098591549296,
+   "e1_f1_macro": 0.687045366205786,
+   "e1_tipo_correcto": 51,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "carozo": 6,
+     "citrico": 6
+    },
+    "tropical": {
+     "carozo": 3,
+     "tropical": 10
+    },
+    "carozo": {
+     "citrico": 11,
+     "carozo": 35
+    }
+   },
+   "manzanas_derivadas": 35,
+   "no_manzanas_derivadas": 9,
+   "cadena_manzanas_correctas": 27,
+   "cadena_total_correcta": 43,
+   "cadena_total_exactitud": 0.6056338028169014,
+   "cadena_manzanas_exactitud": 0.5869565217391305,
+   "e2_acoplada_n": 35,
+   "e2_acoplada_correctas": 27,
+   "e2_aislada_n": 46,
+   "e2_aislada_exactitud": 0.7608695652173914,
+   "e2_aislada_f1_macro": 0.7718527495833966,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 15,
+     "descarte": 6
+    },
+    "comercial": {
+     "comercial": 10,
+     "premium": 3
+    },
+    "descarte": {
+     "premium": 2,
+     "descarte": 10
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.45652173913043476,
+    "f1_macro": 0.20895522388059698
+   },
+   "linea_base_cadena_manzanas": 0.45652173913043476,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.647887323943662,
+    "f1_macro": 0.2621082621082621
+   }
+  },
+  "prueba": {
+   "n": 78,
+   "n_manzanas": 51,
+   "n_no_manzanas": 27,
+   "e1_exactitud": 0.6025641025641025,
+   "e1_f1_macro": 0.546456228956229,
+   "e1_tipo_correcto": 47,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "carozo": 8,
+     "citrico": 5
+    },
+    "tropical": {
+     "carozo": 6,
+     "tropical": 8
+    },
+    "carozo": {
+     "citrico": 14,
+     "carozo": 34,
+     "tropical": 3
+    }
+   },
+   "manzanas_derivadas": 34,
+   "no_manzanas_derivadas": 14,
+   "cadena_manzanas_correctas": 30,
+   "cadena_total_correcta": 43,
+   "cadena_total_exactitud": 0.5512820512820513,
+   "cadena_manzanas_exactitud": 0.5882352941176471,
+   "e2_acoplada_n": 34,
+   "e2_acoplada_correctas": 30,
+   "e2_aislada_n": 51,
+   "e2_aislada_exactitud": 0.9019607843137255,
+   "e2_aislada_f1_macro": 0.9088439046333784,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 17,
+     "descarte": 4
+    },
+    "comercial": {
+     "comercial": 12,
+     "premium": 1
+    },
+    "descarte": {
+     "descarte": 17
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.4117647058823529,
+    "f1_macro": 0.19444444444444445
+   },
+   "linea_base_cadena_manzanas": 0.4117647058823529,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.6538461538461539,
+    "f1_macro": 0.26356589147286824
+   }
+  },
+  "todas": {
+   "n": 339,
+   "n_manzanas": 219,
+   "n_no_manzanas": 120,
+   "e1_exactitud": 0.7522123893805309,
+   "e1_f1_macro": 0.7157307349146295,
+   "e1_tipo_correcto": 255,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "carozo": 20,
+     "citrico": 40
+    },
+    "tropical": {
+     "carozo": 15,
+     "tropical": 45
+    },
+    "carozo": {
+     "carozo": 170,
+     "citrico": 33,
+     "tropical": 16
+    }
+   },
+   "manzanas_derivadas": 170,
+   "no_manzanas_derivadas": 35,
+   "cadena_manzanas_correctas": 128,
+   "cadena_total_correcta": 213,
+   "cadena_total_exactitud": 0.6283185840707964,
+   "cadena_manzanas_exactitud": 0.5844748858447488,
+   "e2_acoplada_n": 170,
+   "e2_acoplada_correctas": 128,
+   "e2_aislada_n": 219,
+   "e2_aislada_exactitud": 0.7488584474885844,
+   "e2_aislada_f1_macro": 0.7598318853768241,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 71,
+     "descarte": 27,
+     "comercial": 1
+    },
+    "comercial": {
+     "comercial": 44,
+     "premium": 16
+    },
+    "descarte": {
+     "descarte": 49,
+     "premium": 11
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.4520547945205479,
+    "f1_macro": 0.20754716981132074
+   },
+   "linea_base_cadena_manzanas": 0.4520547945205479,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.6460176991150443,
+    "f1_macro": 0.2616487455197133
+   }
+  }
+ },
+ "original_reentrenado": {
+  "entrenamiento": {
+   "n": 190,
+   "n_manzanas": 122,
+   "n_no_manzanas": 68,
+   "e1_exactitud": 0.7631578947368421,
+   "e1_f1_macro": 0.7530977982590886,
+   "e1_tipo_correcto": 145,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "carozo": 4,
+     "citrico": 31
+    },
+    "tropical": {
+     "tropical": 28,
+     "carozo": 5
+    },
+    "carozo": {
+     "carozo": 86,
+     "tropical": 9,
+     "citrico": 27
+    }
+   },
+   "manzanas_derivadas": 86,
+   "no_manzanas_derivadas": 9,
+   "cadena_manzanas_correctas": 53,
+   "cadena_total_correcta": 112,
+   "cadena_total_exactitud": 0.5894736842105263,
+   "cadena_manzanas_exactitud": 0.4344262295081967,
+   "e2_acoplada_n": 86,
+   "e2_acoplada_correctas": 53,
+   "e2_aislada_n": 122,
+   "e2_aislada_exactitud": 0.6967213114754098,
+   "e2_aislada_f1_macro": 0.6706476197325143,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 51,
+     "descarte": 6
+    },
+    "comercial": {
+     "descarte": 2,
+     "comercial": 15,
+     "premium": 17
+    },
+    "descarte": {
+     "descarte": 19,
+     "premium": 12
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.4672131147540984,
+    "f1_macro": 0.2122905027932961
+   },
+   "linea_base_cadena_manzanas": 0.4672131147540984,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.6421052631578947,
+    "f1_macro": 0.2606837606837607
+   }
+  },
+  "validacion": {
+   "n": 71,
+   "n_manzanas": 46,
+   "n_no_manzanas": 25,
+   "e1_exactitud": 0.5492957746478874,
+   "e1_f1_macro": 0.5266955266955268,
+   "e1_tipo_correcto": 39,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "carozo": 9,
+     "citrico": 3
+    },
+    "tropical": {
+     "carozo": 5,
+     "tropical": 8
+    },
+    "carozo": {
+     "citrico": 18,
+     "carozo": 28
+    }
+   },
+   "manzanas_derivadas": 28,
+   "no_manzanas_derivadas": 14,
+   "cadena_manzanas_correctas": 20,
+   "cadena_total_correcta": 31,
+   "cadena_total_exactitud": 0.43661971830985913,
+   "cadena_manzanas_exactitud": 0.43478260869565216,
+   "e2_acoplada_n": 28,
+   "e2_acoplada_correctas": 20,
+   "e2_aislada_n": 46,
+   "e2_aislada_exactitud": 0.6304347826086957,
+   "e2_aislada_f1_macro": 0.5775902019198941,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 19,
+     "descarte": 2
+    },
+    "comercial": {
+     "comercial": 7,
+     "descarte": 2,
+     "premium": 4
+    },
+    "descarte": {
+     "premium": 9,
+     "descarte": 3
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.45652173913043476,
+    "f1_macro": 0.20895522388059698
+   },
+   "linea_base_cadena_manzanas": 0.45652173913043476,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.647887323943662,
+    "f1_macro": 0.2621082621082621
+   }
+  },
+  "prueba": {
+   "n": 78,
+   "n_manzanas": 51,
+   "n_no_manzanas": 27,
+   "e1_exactitud": 0.5512820512820513,
+   "e1_f1_macro": 0.5478705226934967,
+   "e1_tipo_correcto": 43,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "carozo": 7,
+     "citrico": 6
+    },
+    "tropical": {
+     "carozo": 6,
+     "tropical": 8
+    },
+    "carozo": {
+     "citrico": 22,
+     "carozo": 29
+    }
+   },
+   "manzanas_derivadas": 29,
+   "no_manzanas_derivadas": 13,
+   "cadena_manzanas_correctas": 21,
+   "cadena_total_correcta": 35,
+   "cadena_total_exactitud": 0.44871794871794873,
+   "cadena_manzanas_exactitud": 0.4117647058823529,
+   "e2_acoplada_n": 29,
+   "e2_acoplada_correctas": 21,
+   "e2_aislada_n": 51,
+   "e2_aislada_exactitud": 0.7254901960784313,
+   "e2_aislada_f1_macro": 0.7121805755082495,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 19,
+     "descarte": 2
+    },
+    "comercial": {
+     "comercial": 6,
+     "premium": 7
+    },
+    "descarte": {
+     "descarte": 12,
+     "premium": 5
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.4117647058823529,
+    "f1_macro": 0.19444444444444445
+   },
+   "linea_base_cadena_manzanas": 0.4117647058823529,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.6538461538461539,
+    "f1_macro": 0.26356589147286824
+   }
+  }
+ },
+ "original_entregado": {
+  "entrenamiento": {
+   "n": 190,
+   "n_manzanas": 122,
+   "n_no_manzanas": 68,
+   "e1_exactitud": 0.3684210526315789,
+   "e1_f1_macro": 0.3567165894833646,
+   "e1_tipo_correcto": 70,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "citrico": 4,
+     "carozo": 31
+    },
+    "tropical": {
+     "citrico": 5,
+     "tropical": 24,
+     "carozo": 4
+    },
+    "carozo": {
+     "carozo": 42,
+     "citrico": 52,
+     "tropical": 28
+    }
+   },
+   "manzanas_derivadas": 42,
+   "no_manzanas_derivadas": 35,
+   "cadena_manzanas_correctas": 28,
+   "cadena_total_correcta": 56,
+   "cadena_total_exactitud": 0.29473684210526313,
+   "cadena_manzanas_exactitud": 0.22950819672131148,
+   "e2_acoplada_n": 42,
+   "e2_acoplada_correctas": 28,
+   "e2_aislada_n": 122,
+   "e2_aislada_exactitud": 0.7049180327868853,
+   "e2_aislada_f1_macro": 0.7063669286153935,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 41,
+     "descarte": 15,
+     "comercial": 1
+    },
+    "comercial": {
+     "descarte": 2,
+     "comercial": 20,
+     "premium": 12
+    },
+    "descarte": {
+     "descarte": 25,
+     "premium": 6
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.4672131147540984,
+    "f1_macro": 0.2122905027932961
+   },
+   "linea_base_cadena_manzanas": 0.4672131147540984,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.6421052631578947,
+    "f1_macro": 0.2606837606837607
+   }
+  },
+  "validacion": {
+   "n": 71,
+   "n_manzanas": 46,
+   "n_no_manzanas": 25,
+   "e1_exactitud": 0.6619718309859155,
+   "e1_f1_macro": 0.6592800592800593,
+   "e1_tipo_correcto": 47,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "citrico": 9,
+     "carozo": 3
+    },
+    "tropical": {
+     "tropical": 13
+    },
+    "carozo": {
+     "carozo": 25,
+     "citrico": 14,
+     "tropical": 7
+    }
+   },
+   "manzanas_derivadas": 25,
+   "no_manzanas_derivadas": 3,
+   "cadena_manzanas_correctas": 14,
+   "cadena_total_correcta": 36,
+   "cadena_total_exactitud": 0.5070422535211268,
+   "cadena_manzanas_exactitud": 0.30434782608695654,
+   "e2_acoplada_n": 25,
+   "e2_acoplada_correctas": 14,
+   "e2_aislada_n": 46,
+   "e2_aislada_exactitud": 0.6521739130434783,
+   "e2_aislada_f1_macro": 0.6602254428341385,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 14,
+     "descarte": 7
+    },
+    "comercial": {
+     "comercial": 10,
+     "descarte": 2,
+     "premium": 1
+    },
+    "descarte": {
+     "premium": 6,
+     "descarte": 6
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.45652173913043476,
+    "f1_macro": 0.20895522388059698
+   },
+   "linea_base_cadena_manzanas": 0.45652173913043476,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.647887323943662,
+    "f1_macro": 0.2621082621082621
+   }
+  },
+  "prueba": {
+   "n": 78,
+   "n_manzanas": 51,
+   "n_no_manzanas": 27,
+   "e1_exactitud": 0.6410256410256411,
+   "e1_f1_macro": 0.6184725952167812,
+   "e1_tipo_correcto": 50,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "citrico": 7,
+     "carozo": 6
+    },
+    "tropical": {
+     "tropical": 14
+    },
+    "carozo": {
+     "carozo": 29,
+     "citrico": 13,
+     "tropical": 9
+    }
+   },
+   "manzanas_derivadas": 29,
+   "no_manzanas_derivadas": 6,
+   "cadena_manzanas_correctas": 23,
+   "cadena_total_correcta": 44,
+   "cadena_total_exactitud": 0.5641025641025641,
+   "cadena_manzanas_exactitud": 0.45098039215686275,
+   "e2_acoplada_n": 29,
+   "e2_acoplada_correctas": 23,
+   "e2_aislada_n": 51,
+   "e2_aislada_exactitud": 0.8823529411764706,
+   "e2_aislada_f1_macro": 0.8944444444444444,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 15,
+     "descarte": 6
+    },
+    "comercial": {
+     "comercial": 13
+    },
+    "descarte": {
+     "descarte": 17
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.4117647058823529,
+    "f1_macro": 0.19444444444444445
+   },
+   "linea_base_cadena_manzanas": 0.4117647058823529,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.6538461538461539,
+    "f1_macro": 0.26356589147286824
+   }
+  },
+  "todas": {
+   "n": 339,
+   "n_manzanas": 219,
+   "n_no_manzanas": 120,
+   "e1_exactitud": 0.49262536873156343,
+   "e1_f1_macro": 0.4789286322192002,
+   "e1_tipo_correcto": 167,
+   "e1_novedades": 0,
+   "e1_sin_etiqueta": 0,
+   "e1_confusion": {
+    "citrico": {
+     "citrico": 20,
+     "carozo": 40
+    },
+    "tropical": {
+     "citrico": 5,
+     "tropical": 51,
+     "carozo": 4
+    },
+    "carozo": {
+     "carozo": 96,
+     "citrico": 79,
+     "tropical": 44
+    }
+   },
+   "manzanas_derivadas": 96,
+   "no_manzanas_derivadas": 44,
+   "cadena_manzanas_correctas": 65,
+   "cadena_total_correcta": 136,
+   "cadena_total_exactitud": 0.40117994100294985,
+   "cadena_manzanas_exactitud": 0.2968036529680365,
+   "e2_acoplada_n": 96,
+   "e2_acoplada_correctas": 65,
+   "e2_aislada_n": 219,
+   "e2_aislada_exactitud": 0.7351598173515982,
+   "e2_aislada_f1_macro": 0.7447622823911484,
+   "e2_aislada_novedades": 0,
+   "e2_aislada_sin_etiqueta": 0,
+   "e2_aislada_confusion": {
+    "premium": {
+     "premium": 70,
+     "descarte": 28,
+     "comercial": 1
+    },
+    "comercial": {
+     "comercial": 43,
+     "descarte": 4,
+     "premium": 13
+    },
+    "descarte": {
+     "descarte": 48,
+     "premium": 12
+    }
+   },
+   "linea_base_calidad": {
+    "clase": "premium",
+    "exactitud": 0.4520547945205479,
+    "f1_macro": 0.20754716981132074
+   },
+   "linea_base_cadena_manzanas": 0.4520547945205479,
+   "linea_base_tipo": {
+    "clase": "carozo",
+    "exactitud": 0.6460176991150443,
+    "f1_macro": 0.2616487455197133
+   }
+  }
+ }
+}

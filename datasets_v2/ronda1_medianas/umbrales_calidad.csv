@@ -1,0 +1,7 @@
+variable,medida_continua,operador,umbral
+es_grande,area,>=,11108.5
+es_pesada,volumen_proxy,>=,9153.424675006132
+textura_firme,textura_laplaciano,<=,328.7189930424803
+sin_defectos_superficie,defecto_score,<=,0.17368215921270583
+color_homogeneo,desvio_tono,<=,6.608053535495693
+sin_oscurecimiento,frac_oscuros,<=,0.08807000071138935

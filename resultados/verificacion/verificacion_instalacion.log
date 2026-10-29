@@ -1,0 +1,278 @@
+Verificacion de instalacion - 2026-10-23T17:23:42
+Sistema: Windows-11-10.0.26200-SP0 | Python base: 3.14.0 | entorno temporal: C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv
+
+$ C:\Users\santi\AppData\Local\Programs\Python\Python314\python.exe -m venv C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv
+
+[venv: codigo de salida 0]
+
+$ C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv\Scripts\python.exe -m pip install --disable-pip-version-check -r requirements-dev.txt
+Collecting opencv-python-headless==5.0.0.93 (from -r C:\Users\santi\OneDrive\Escritorio\tfi-art1-frutas\requirements.txt (line 3))
+  Using cached opencv_python_headless-5.0.0.93-cp37-abi3-win_amd64.whl.metadata (20 kB)
+Collecting numpy==2.4.6 (from -r C:\Users\santi\OneDrive\Escritorio\tfi-art1-frutas\requirements.txt (line 4))
+  Using cached numpy-2.4.6-cp314-cp314-win_amd64.whl.metadata (6.6 kB)
+Collecting pytest==7.4.2 (from -r requirements-dev.txt (line 2))
+  Using cached pytest-7.4.2-py3-none-any.whl.metadata (7.9 kB)
+Collecting iniconfig (from pytest==7.4.2->-r requirements-dev.txt (line 2))
+  Using cached iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting packaging (from pytest==7.4.2->-r requirements-dev.txt (line 2))
+  Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pluggy<2.0,>=0.12 (from pytest==7.4.2->-r requirements-dev.txt (line 2))
+  Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting colorama (from pytest==7.4.2->-r requirements-dev.txt (line 2))
+  Using cached colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Using cached opencv_python_headless-5.0.0.93-cp37-abi3-win_amd64.whl (43.8 MB)
+Using cached numpy-2.4.6-cp314-cp314-win_amd64.whl (12.5 MB)
+Using cached pytest-7.4.2-py3-none-any.whl (324 kB)
+Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Using cached iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Installing collected packages: pluggy, packaging, numpy, iniconfig, colorama, pytest, opencv-python-headless
+
+Successfully installed colorama-0.4.6 iniconfig-2.3.1 numpy-2.4.6 opencv-python-headless-5.0.0.93 packaging-26.3 pluggy-1.7.0 pytest-7.4.2
+
+[pip install: codigo de salida 0]
+
+$ C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv\Scripts\python.exe -m pip freeze
+colorama==0.4.6
+iniconfig==2.3.1
+numpy==2.4.6
+opencv-python-headless==5.0.0.93
+packaging==26.3
+pluggy==1.7.0
+pytest==7.4.2
+
+[pip freeze: codigo de salida 0]
+
+$ C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv\Scripts\python.exe -c import sys, cv2, numpy, pytest; print(sys.version.split()[0], cv2.__version__, numpy.__version__, pytest.__version__)
+3.14.0 5.0.0 2.4.6 7.4.2
+
+[import: codigo de salida 0]
+
+$ C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv\Scripts\python.exe -m pytest tests -q -p no:cacheprovider
+........................................................................ [ 26%]
+........................................................................ [ 53%]
+........................................................................ [ 80%]
+.....................................................                    [100%]
+269 passed in 39.87s
+
+[pytest: codigo de salida 0]
+
+$ C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv\Scripts\python.exe demo.py
+-----------------
+  Medidas continuas -> bit (umbral del modelo):
+    - es_grande                area                 =  9827.5000  (>= 1.02e+04) -> 0
+    - es_pesada                volumen_proxy        =  6731.9385  (>= 9134) -> 0
+    - textura_firme            textura_laplaciano   =   695.3355  (<= 290.4) -> 0
+    - sin_defectos_superficie  defecto_score        =     0.1788  (<= 0.1711) -> 0
+    - color_homogeneo          desvio_tono          =    10.6704  (<= 6.106) -> 0
+    - croma_alto               croma_medio          =    63.5549  (>= 45.44) -> 1
+  Vector binario F1: [0, 0, 0, 0, 0, 1]
+
+  >> RESONANCIA con la categoria 1 (vigilancia rho=0.45, 11 categorias)
+     Etiqueta de la categoria : COMERCIAL
+     Coincidencia ART1        : 100.0%  = |I^T|/|I|: parte del patron contenida en el prototipo. NO es probabilidad de acierto.
+     Pureza de entrenamiento  : 86% sobre 14 muestras: mezcla de etiquetas de la categoria al entrenar; NO es la confianza de esta foto.
+
+  Advertencias:
+   * ART1 solo compara vectores binarios: un match alto no demuestra que la imagen sea una fruta ni que la etiqueta sea correcta; no hay rechazo de objetos ajenos al dominio.
+
+  Pesos sin cambios (huella etapa 1: 6f2815c8ffbe, etapa 2: 91f817118b56).
+========================================================================
+
+
+  [OK] foto naranja.jpg (1.3s)
+
+----------------------------------------------------------------------
+  auto.jpg
+----------------------------------------------------------------------
+
+  $ C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv\Scripts\python.exe probar_imagen.py --imagen ejemplos\auto.jpg --sin-grafico
+
+
+========================================================================
+   CLASIFICACION DE FRUTAS CON ART1 - INFERENCIA DE DOS ETAPAS
+========================================================================
+
+Imagen : C:\Users\santi\OneDrive\Escritorio\tfi-art1-frutas\ejemplos\auto.jpg  (1024x1024 px)
+Etapa 1: modelos_v2\principal\art1_morfologia.json - formato 2, rho=0.6, 11 categorias, politica de vector nulo 'categoria_propia'
+Etapa 2: modelos_v2\principal\art1_calidad.json - formato 2, rho=0.45, 11 categorias, politica de vector nulo 'categoria_propia'
+Modo   : inferencia (los pesos NO se modifican)
+
+------------------------------------------------------------------------
+  ETAPA 1: CLASIFICACION MORFOLOGICA (tipo de fruta)
+------------------------------------------------------------------------
+  Medidas continuas -> bit (umbral del modelo):
+    - es_esferica              aspecto_esferico     =     0.2611  (>= 0.8) -> 0
+    - cascara_rugosa           textura_laplaciano   =  5039.7554  (>= 150) -> 1
+    - tiene_tallo              defecto_convexidad   =     0.6356  (>= 0.06) -> 1
+    - densidad_alta            solidez              =     0.6394  (>= 0.9) -> 0
+    - pigmentacion_oscura      gris_promedio        =    77.2159  (<= 130) -> 1
+    - color_uniforme           desvio_tono          =     3.3844  (<= 12) -> 1
+    - croma_alto               croma_medio          =    46.5481  (>= 45.93) -> 1
+    - naranja_dominante        frac_naranja         =     0.0041  (>= 0.1804) -> 0
+  Vector binario F1: [0, 1, 1, 0, 1, 1, 1, 0]
+
+  >> RESONANCIA con la categoria 2 (vigilancia rho=0.6, 11 categorias)
+     Etiqueta de la categoria : CAROZO (manzana)
+     Coincidencia ART1        : 60.0%  = |I^T|/|I|: parte del patron contenida en el prototipo. NO es probabilidad de acierto.
+     Pureza de entrenamiento  : 74% sobre 39 muestras: mezcla de etiquetas de la categoria al entrenar; NO es la confianza de esta foto.
+
+------------------------------------------------------------------------
+  ETAPA 2: CALIDAD DE LA MANZANA (derivada desde la etapa 1)
+------------------------------------------------------------------------
+  Medidas continuas -> bit (umbral del modelo):
+    - es_grande                area                 = 87408.5000  (>= 1.02e+04) -> 1
+    - es_pesada                volumen_proxy        = 57613.0988  (>= 9134) -> 1
+    - textura_firme            textura_laplaciano   =  5039.7554  (<= 290.4) -> 0
+    - sin_defectos_superficie  defecto_score        =     0.0823  (<= 0.1711) -> 1
+    - color_homogeneo          desvio_tono          =     3.3844  (<= 6.106) -> 1
+    - croma_alto               croma_medio          =    46.5481  (>= 45.44) -> 1
+  Vector binario F1: [1, 1, 0, 1, 1, 1]
+
+  >> RESONANCIA con la categoria 10 (vigilancia rho=0.45, 11 categorias)
+     Etiqueta de la categoria : PREMIUM
+     Coincidencia ART1        : 80.0%  = |I^T|/|I|: parte del patron contenida en el prototipo. NO es probabilidad de acierto.
+     Pureza de entrenamiento  : 87% sobre 15 muestras: mezcla de etiquetas de la categoria al entrenar; NO es la confianza de esta foto.
+
+  Advertencias:
+   * ART1 solo compara vectores binarios: un match alto no demuestra que la imagen sea una fruta ni que la etiqueta sea correcta; no hay rechazo de objetos ajenos al dominio.
+
+  Pesos sin cambios (huella etapa 1: 6f2815c8ffbe, etapa 2: 91f817118b56).
+========================================================================
+
+
+  [OK] foto auto.jpg (1.3s)
+
+======================================================================
+  RESUMEN
+======================================================================
+  OK    morfologia entregada rho=0.7
+  OK    morfologia entregada rho=0.85
+  OK    calidad entregada rho=0.7
+  OK    calidad entregada rho=0.85
+  OK    calidad entregada rho=0.95
+  OK    morfologia variante principal (config)
+  OK    calidad variante principal (config)
+  OK    foto manzana_premium.jpg
+  OK    foto manzana_comercial_defecto.jpg
+  OK    foto manzana_descarte_severo.jpg
+  OK    foto naranja.jpg
+  OK    foto auto.jpg
+
+  12 pasos completados sin errores.
+
+  Comparacion original vs mejorada, con parametros y datos: resultados/comparacion.md
+  Baseline reproducible del primer avance:                  resultados/baseline_original.md
+  Foto propia:  python probar_imagen.py --imagen ruta/a/foto.jpg
+    
+
+[demo: codigo de salida 0]
+
+$ C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv\Scripts\python.exe probar_imagen.py --imagen ejemplos/naranja.jpg --legado --sin-grafico
+
+========================================================================
+   CLASIFICACION DE FRUTAS CON ART1 - INFERENCIA DE DOS ETAPAS
+========================================================================
+
+Imagen : ejemplos/naranja.jpg  (256x192 px)
+Etapa 1: modelos\art1_morfologia.json - formato 1, rho=0.85, 19 categorias, politica de vector nulo 'categoria_propia'
+Etapa 2: modelos\art1_calidad.json - formato 1, rho=0.7, 17 categorias, politica de vector nulo 'categoria_propia'
+Modo   : inferencia (los pesos NO se modifican)
+
+------------------------------------------------------------------------
+  ETAPA 1: CLASIFICACION MORFOLOGICA (tipo de fruta)
+------------------------------------------------------------------------
+  Medidas continuas -> bit (umbral del modelo):
+    - es_esferica              aspecto_esferico     =     0.8667  (>= 0.8) -> 1
+    - cascara_rugosa           textura_laplaciano   =   695.3355  (>= 150) -> 1
+    - tiene_tallo              profundidad_defecto  =     0.0000  (>= 0.06) -> 0
+    - densidad_alta            solidez              =     0.6998  (>= 0.9) -> 0
+    - pigmentacion_oscura      gris_promedio        =   152.6531  (<= 130) -> 0
+    - color_uniforme           desvio_hue           =    15.9586  (<= 12) -> 0
+  Vector binario F1: [1, 1, 0, 0, 0, 0]
+
+  >> RESONANCIA con la categoria 7 (vigilancia rho=0.85, 19 categorias)
+     Etiqueta de la categoria : CITRICO
+     Coincidencia ART1        : 100.0%  = |I^T|/|I|: parte del patron contenida en el prototipo. NO es probabilidad de acierto.
+     Pureza de entrenamiento  : 50% sobre 6 muestras: mezcla de etiquetas de la categoria al entrenar; NO es la confianza de esta foto.
+
+------------------------------------------------------------------------
+  ETAPA 2: OMITIDA - la etapa 1 identifico 'citrico'; solo se deriva 'carozo' (manzana).
+------------------------------------------------------------------------
+
+  Advertencias:
+   * modelo en formato 1 (entregado): no registra el preprocesamiento ni las versiones; se usan las constantes del primer avance y el etiquetado de categorias tal como se guardo (asignaciones online). Ver docs/informe_cambios.md, seccion compatibilidad
+   * ART1 solo compara vectores binarios: un match alto no demuestra que la imagen sea una fruta ni que la etiqueta sea correcta; no hay rechazo de objetos ajenos al dominio.
+
+  Pesos sin cambios (huella etapa 1: 60682827b29d, etapa 2: 1d73fa229954).
+========================================================================
+
+
+[probar_imagen legado: codigo de salida 0]
+
+$ C:\Users\santi\AppData\Local\Temp\art1_venv_840xk9q7\venv\Scripts\python.exe probar_imagen.py --imagen ejemplos/manzana_premium.jpg --sin-grafico
+
+========================================================================
+   CLASIFICACION DE FRUTAS CON ART1 - INFERENCIA DE DOS ETAPAS
+========================================================================
+
+Imagen : ejemplos/manzana_premium.jpg  (256x256 px)
+Etapa 1: modelos_v2\principal\art1_morfologia.json - formato 2, rho=0.6, 11 categorias, politica de vector nulo 'categoria_propia'
+Etapa 2: modelos_v2\principal\art1_calidad.json - formato 2, rho=0.45, 11 categorias, politica de vector nulo 'categoria_propia'
+Modo   : inferencia (los pesos NO se modifican)
+
+------------------------------------------------------------------------
+  ETAPA 1: CLASIFICACION MORFOLOGICA (tipo de fruta)
+------------------------------------------------------------------------
+  Medidas continuas -> bit (umbral del modelo):
+    - es_esferica              aspecto_esferico     =     0.8778  (>= 0.8) -> 1
+    - cascara_rugosa           textura_laplaciano   =   136.6380  (>= 150) -> 0
+    - tiene_tallo              defecto_convexidad   =     0.0780  (>= 0.06) -> 1
+    - densidad_alta            solidez              =     0.9323  (>= 0.9) -> 1
+    - pigmentacion_oscura      gris_promedio        =    85.4320  (<= 130) -> 1
+    - color_uniforme           desvio_tono          =    12.5728  (<= 12) -> 0
+    - croma_alto               croma_medio          =    33.0322  (>= 45.93) -> 0
+    - naranja_dominante        frac_naranja         =     0.2597  (>= 0.1804) -> 1
+  Vector binario F1: [1, 0, 1, 1, 1, 0, 0, 1]
+
+  >> RESONANCIA con la categoria 5 (vigilancia rho=0.6, 11 categorias)
+     Etiqueta de la categoria : CAROZO (manzana)
+     Coincidencia ART1        : 60.0%  = |I^T|/|I|: parte del patron contenida en el prototipo. NO es probabilidad de acierto.
+     Pureza de entrenamiento  : 100% sobre 2 muestras: mezcla de etiquetas de la categoria al entrenar; NO es la confianza de esta foto.
+
+------------------------------------------------------------------------
+  ETAPA 2: CALIDAD DE LA MANZANA (derivada desde la etapa 1)
+------------------------------------------------------------------------
+  Medidas continuas -> bit (umbral del modelo):
+    - es_grande                area                 = 15980.5000  (>= 1.02e+04) -> 1
+    - es_pesada                volumen_proxy        = 14847.0324  (>= 9134) -> 1
+    - textura_firme            textura_laplaciano   =   136.6380  (<= 290.4) -> 1
+    - sin_defectos_superficie  defecto_score        =     0.1691  (<= 0.1711) -> 1
+    - color_homogeneo          desvio_tono          =    12.5728  (<= 6.106) -> 0
+    - croma_alto               croma_medio          =    33.0322  (>= 45.44) -> 0
+  Vector binario F1: [1, 1, 1, 1, 0, 0]
+
+  >> RESONANCIA con la categoria 5 (vigilancia rho=0.45, 11 categorias)
+     Etiqueta de la categoria : PREMIUM
+     Coincidencia ART1        : 50.0%  = |I^T|/|I|: parte del patron contenida en el prototipo. NO es probabilidad de acierto.
+     Pureza de entrenamiento  : 73% sobre 22 muestras: mezcla de etiquetas de la categoria al entrenar; NO es la confianza de esta foto.
+
+  Advertencias:
+   * ART1 solo compara vectores binarios: un match alto no demuestra que la imagen sea una fruta ni que la etiqueta sea correcta; no hay rechazo de objetos ajenos al dominio.
+
+  Pesos sin cambios (huella etapa 1: 6f2815c8ffbe, etapa 2: 91f817118b56).
+========================================================================
+
+
+[probar_imagen principal: codigo de salida 0]
+
+=== RESUMEN ===
+OK    crear entorno virtual (codigo 0)
+OK    instalar requirements-dev.txt (codigo 0)
+OK    versiones instaladas (pip freeze) (codigo 0)
+OK    importar dependencias (codigo 0)
+OK    pruebas (pytest) (codigo 0)
+OK    demo.py (codigo 0)
+OK    probar_imagen.py --legado (ejemplo) (codigo 0)
+OK    probar_imagen.py (variante principal) (codigo 0)

@@ -1,0 +1,295 @@
+{
+  "formato_version": 2,
+  "n_features": 6,
+  "rho": 0.35,
+  "L": 2.0,
+  "max_categorias": 50,
+  "politica_nulo": "categoria_propia",
+  "tipo_modelo": "fotografias",
+  "top_down": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "preprocesamiento": {
+    "version": "v2",
+    "etapa": "calidad",
+    "segmentador": "v2",
+    "tam_canvas": 200,
+    "normalizacion": "ninguna",
+    "origen_umbrales": "estrategia 'compromiso' sobre el entrenamiento",
+    "opciones": {
+      "tallo": "convexidad",
+      "tono": "circular",
+      "extras": [
+        "croma_alto"
+      ],
+      "color": "mascara"
+    },
+    "cols_features": [
+      "es_grande",
+      "es_pesada",
+      "textura_firme",
+      "sin_defectos_superficie",
+      "color_homogeneo",
+      "croma_alto"
+    ],
+    "reglas": {
+      "es_grande": {
+        "crudo": "area",
+        "op": ">="
+      },
+      "es_pesada": {
+        "crudo": "volumen_proxy",
+        "op": ">="
+      },
+      "textura_firme": {
+        "crudo": "textura_laplaciano",
+        "op": "<="
+      },
+      "sin_defectos_superficie": {
+        "crudo": "defecto_score",
+        "op": "<="
+      },
+      "color_homogeneo": {
+        "crudo": "desvio_tono",
+        "op": "<="
+      },
+      "croma_alto": {
+        "crudo": "croma_medio",
+        "op": ">="
+      }
+    },
+    "umbrales": {
+      "es_grande": 12535.0,
+      "es_pesada": 11765.184501158174,
+      "textura_firme": 176.89871698824132,
+      "sin_defectos_superficie": 0.17237138757942203,
+      "color_homogeneo": 6.868747362366843,
+      "croma_alto": 40.53889846801758
+    }
+  },
+  "metadata_extra": {
+    "cols_features": [
+      "es_grande",
+      "es_pesada",
+      "textura_firme",
+      "sin_defectos_superficie",
+      "color_homogeneo",
+      "croma_alto"
+    ],
+    "cols_metadata": [
+      "calidad_real"
+    ],
+    "n_muestras_entrenamiento": 153,
+    "mapeo_clusters": {
+      "0": {
+        "n": 1,
+        "etiqueta": "comercial",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "comercial": 1
+        }
+      },
+      "1": {
+        "n": 8,
+        "etiqueta": null,
+        "estado": "empate",
+        "pureza": 0.375,
+        "distribucion": {
+          "comercial": 3,
+          "descarte": 3,
+          "premium": 2
+        },
+        "empatadas": [
+          "comercial",
+          "descarte"
+        ]
+      },
+      "2": {
+        "n": 12,
+        "etiqueta": "comercial",
+        "estado": "etiquetada",
+        "pureza": 0.5,
+        "distribucion": {
+          "comercial": 6,
+          "descarte": 1,
+          "premium": 5
+        }
+      },
+      "3": {
+        "n": 3,
+        "etiqueta": "descarte",
+        "estado": "etiquetada",
+        "pureza": 0.6667,
+        "distribucion": {
+          "descarte": 2,
+          "premium": 1
+        }
+      },
+      "4": {
+        "n": 2,
+        "etiqueta": null,
+        "estado": "empate",
+        "pureza": 0.5,
+        "distribucion": {
+          "descarte": 1,
+          "premium": 1
+        },
+        "empatadas": [
+          "descarte",
+          "premium"
+        ]
+      },
+      "5": {
+        "n": 56,
+        "etiqueta": "premium",
+        "estado": "etiquetada",
+        "pureza": 0.4286,
+        "distribucion": {
+          "comercial": 18,
+          "descarte": 14,
+          "premium": 24
+        }
+      },
+      "6": {
+        "n": 38,
+        "etiqueta": "descarte",
+        "estado": "etiquetada",
+        "pureza": 0.5526,
+        "distribucion": {
+          "descarte": 21,
+          "premium": 17
+        }
+      },
+      "7": {
+        "n": 17,
+        "etiqueta": "comercial",
+        "estado": "etiquetada",
+        "pureza": 0.8235,
+        "distribucion": {
+          "comercial": 14,
+          "premium": 3
+        }
+      },
+      "8": {
+        "n": 16,
+        "etiqueta": "premium",
+        "estado": "etiquetada",
+        "pureza": 1.0,
+        "distribucion": {
+          "premium": 16
+        }
+      }
+    },
+    "reinferencia_entrenamiento": {
+      "n": 153,
+      "n_resuenan": 153,
+      "n_sin_resonancia": 0,
+      "distribucion_sin_resonancia": {}
+    },
+    "entrenamiento": {
+      "csv": "calidad_entrenamiento.csv",
+      "csv_sha256": "73327e91de2d34686ee1952b03b1bb10bd568a6e3a241ec637707ba3d72f8404",
+      "esquema": "calidad",
+      "orden": "original",
+      "semilla": null,
+      "epocas_pedidas": 1,
+      "epocas_realizadas": 1,
+      "estable": false,
+      "modo_mapeo": "prototipos_finales",
+      "desempate": "indeterminada",
+      "pureza_online": 0.6013,
+      "pureza_final": 0.5752,
+      "cobertura_final": 1.0,
+      "n_por_etiqueta": {
+        "comercial": 42,
+        "descarte": 42,
+        "premium": 69
+      },
+      "col_referencia": "calidad_real"
+    },
+    "procedencia": {
+      "semilla_informe": 8,
+      "manifiesto": "datasets_v2/manifiesto_imagenes.csv",
+      "script": "scripts/final_ronda2.py",
+      "banco": "339 fotos ya inspeccionadas (no es un conjunto externo)",
+      "variante": "experimental_segmentacion_v2",
+      "rho": 0.35,
+      "orden_presentacion": "densidad_asc (fijado en el orden de filas del CSV de entrenamiento)",
+      "umbrales_calculados_con": "solo las fotos de desarrollo (sin el bloque de informe)"
+    },
+    "preprocesamiento_origen": "datasets_v2/experimental_segmentacion_v2/preprocesamiento_calidad.csv",
+    "comprometido_con_el_primer_avance": false
+  }
+}

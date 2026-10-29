@@ -1,0 +1,274 @@
+{
+ "variante": {
+  "nombre": "original",
+  "segmentador": "v1",
+  "legado": false,
+  "tallo": "convexidad",
+  "tono": "circular",
+  "extras_morf": [
+   "croma_alto"
+  ],
+  "extras_cal": [
+   "sin_oscurecimiento"
+  ],
+  "umbral_morf": "compromiso",
+  "umbral_cal": "compromiso",
+  "cobertura": "todas",
+  "mapeo": "prototipos_finales",
+  "desempate": "mayoritaria_global",
+  "rho_morf": null,
+  "rho_cal": null,
+  "epocas": 1,
+  "politica_nulo": "categoria_propia",
+  "color": "mascara",
+  "soporte_min": 1,
+  "derivacion_min": 0.0,
+  "criterio_rho": "f1_etapa",
+  "tope_k": 14,
+  "orden": "densidad_asc"
+ },
+ "decisiones": [
+  {
+   "paso": "P1",
+   "descripcion": "etiquetado de categorias con prototipos finales",
+   "tipo": "obligatoria",
+   "elegida": "prototipos finales",
+   "mejor_alternativa": "prototipos finales",
+   "delta_validacion": -0.0002,
+   "se": 0.0123
+  },
+  {
+   "paso": "P2",
+   "descripcion": "cobertura de la etapa 1 (manzanas de todas las calidades)",
+   "tipo": "obligatoria",
+   "elegida": "manzanas de todas las calidades",
+   "mejor_alternativa": "manzanas de todas las calidades",
+   "delta_validacion": 0.0618,
+   "se": 0.0099
+  },
+  {
+   "paso": "P3",
+   "descripcion": "eleccion de rho en validacion",
+   "tipo": "obligatoria",
+   "elegida": "rho elegido en validacion",
+   "mejor_alternativa": "rho elegido en validacion",
+   "delta_validacion": 0.0428,
+   "se": 0.0093
+  },
+  {
+   "paso": "P4",
+   "descripcion": "umbrales de calidad solo con entrenamiento",
+   "tipo": "obligatoria",
+   "elegida": "medianas del entrenamiento",
+   "mejor_alternativa": "medianas del entrenamiento",
+   "delta_validacion": -0.0096,
+   "se": 0.0056
+  },
+  {
+   "paso": "P5",
+   "descripcion": "tiene_tallo: mismo criterio (convexidad) compatible con OpenCV 5",
+   "tipo": "correccion",
+   "elegida": "convexidad corregida",
+   "mejor_alternativa": "convexidad corregida",
+   "delta_validacion": -0.0092,
+   "se": 0.0075
+  },
+  {
+   "paso": "P6",
+   "descripcion": "desvio de tono circular (color_uniforme / color_homogeneo)",
+   "tipo": "correccion",
+   "elegida": "circular ponderado",
+   "mejor_alternativa": "circular ponderado",
+   "delta_validacion": 0.0176,
+   "se": 0.0077
+  },
+  {
+   "paso": "P7",
+   "descripcion": "cortes morfologicos = los originales (compromiso con el primer avance)",
+   "tipo": "obligatoria",
+   "elegida": "cortes originales ('compromiso')",
+   "mejor_alternativa": "cortes originales ('compromiso')",
+   "delta_validacion": 0.0092,
+   "se": 0.0049
+  },
+  {
+   "paso": "P8",
+   "descripcion": "criterio de exito del primer avance: rho admisible solo si forma <= 14 categorias",
+   "tipo": "obligatoria",
+   "elegida": "tope de 14 categorias",
+   "mejor_alternativa": "tope de 14 categorias",
+   "delta_validacion": -0.006,
+   "se": 0.0034
+  },
+  {
+   "paso": "Xmor1",
+   "descripcion": "descriptor cromatico adicional en morfologia (ya: [])",
+   "tipo": "mejora",
+   "elegida": "+ croma_alto",
+   "mejor_alternativa": "+ croma_alto",
+   "delta_validacion": 0.0561,
+   "se": 0.0119
+  },
+  {
+   "paso": "Xmor2",
+   "descripcion": "descriptor cromatico adicional en morfologia (ya: ['croma_alto'])",
+   "tipo": "mejora",
+   "elegida": "(sin agregar)",
+   "mejor_alternativa": "+ tono_calido",
+   "delta_validacion": -0.0002,
+   "se": 0.0095
+  },
+  {
+   "paso": "Xcal1",
+   "descripcion": "descriptor cromatico adicional en calidad (ya: [])",
+   "tipo": "mejora",
+   "elegida": "+ sin_oscurecimiento",
+   "mejor_alternativa": "+ sin_oscurecimiento",
+   "delta_validacion": 0.0142,
+   "se": 0.0056
+  },
+  {
+   "paso": "Xcal2",
+   "descripcion": "descriptor cromatico adicional en calidad (ya: ['sin_oscurecimiento'])",
+   "tipo": "mejora",
+   "elegida": "(sin agregar)",
+   "mejor_alternativa": "+ croma_alto",
+   "delta_validacion": 0.0042,
+   "se": 0.0063
+  },
+  {
+   "paso": "M1",
+   "descripcion": "desempate de etiquetas",
+   "tipo": "mejora",
+   "elegida": "mayoritaria_global",
+   "mejor_alternativa": "mayoritaria_global",
+   "delta_validacion": 0.0116,
+   "se": 0.004
+  },
+  {
+   "paso": "M2",
+   "descripcion": "pasadas de entrenamiento",
+   "tipo": "mejora",
+   "elegida": "una pasada",
+   "mejor_alternativa": "hasta estabilizar (max 10)",
+   "delta_validacion": 0.0051,
+   "se": 0.0149
+  },
+  {
+   "paso": "M3",
+   "descripcion": "medicion del color de los descriptores adicionales",
+   "tipo": "mejora",
+   "elegida": "mascara completa",
+   "mejor_alternativa": "nucleo (sin borde fruta/fondo)",
+   "delta_validacion": -0.0037,
+   "se": 0.0177
+  },
+  {
+   "paso": "M4",
+   "descripcion": "orden de presentacion durante el entrenamiento",
+   "tipo": "mejora",
+   "elegida": "menos activos primero",
+   "mejor_alternativa": "menos activos primero",
+   "delta_validacion": 0.0237,
+   "se": 0.0123
+  },
+  {
+   "paso": "M5",
+   "descripcion": "criterio para elegir rho de la etapa 1",
+   "tipo": "mejora",
+   "elegida": "F1 macro de la etapa",
+   "mejor_alternativa": "cadena en validacion",
+   "delta_validacion": 0.0004,
+   "se": 0.0004
+  },
+  {
+   "paso": "M6",
+   "descripcion": "soporte minimo para etiquetar una categoria",
+   "tipo": "mejora",
+   "elegida": "1 muestra",
+   "mejor_alternativa": "2 muestras",
+   "delta_validacion": -0.0042,
+   "se": 0.0024
+  },
+  {
+   "paso": "M7",
+   "descripcion": "coincidencia minima de la etapa 1 para derivar a calidad",
+   "tipo": "mejora",
+   "elegida": "basta resonar",
+   "mejor_alternativa": "coincidencia >= 0.75",
+   "delta_validacion": -0.1053,
+   "se": 0.0193
+  },
+  {
+   "paso": "M8",
+   "descripcion": "segmentacion",
+   "tipo": "mejora",
+   "elegida": "v1 (saturacion + Otsu)",
+   "mejor_alternativa": "v2 (candidatos + puntaje)",
+   "delta_validacion": -0.0892,
+   "se": 0.0171
+  },
+  {
+   "paso": "E1",
+   "descripcion": "tiene_tallo por protuberancia (otro detector, SIN anotaciones de referencia)",
+   "tipo": "mejora",
+   "elegida": "convexidad (principal)",
+   "mejor_alternativa": "protuberancia",
+   "delta_validacion": -0.0824,
+   "se": 0.0144
+  },
+  {
+   "paso": "E2",
+   "descripcion": "umbrales morfologicos por mediana (cambia el significado de las variables)",
+   "tipo": "mejora",
+   "elegida": "cortes originales (principal)",
+   "mejor_alternativa": "mediana del entrenamiento",
+   "delta_validacion": -0.0895,
+   "se": 0.0162
+  },
+  {
+   "paso": "E3",
+   "descripcion": "sin el tope de categorias del primer avance",
+   "tipo": "mejora",
+   "elegida": "tope 14 (principal)",
+   "mejor_alternativa": "sin tope",
+   "delta_validacion": 0.0201,
+   "se": 0.0051
+  }
+ ],
+ "semillas_internas": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29
+ ],
+ "semilla_informe": 8,
+ "criterio": "cadena_total_exactitud",
+ "margen": 0.01
+}

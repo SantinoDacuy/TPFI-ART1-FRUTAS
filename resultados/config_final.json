@@ -1,0 +1,152 @@
+{
+ "variante": {
+  "nombre": "original",
+  "segmentador": "v1",
+  "legado": false,
+  "tallo": "protuberancia",
+  "tono": "circular",
+  "extras_morf": [
+   "tono_calido",
+   "saturacion_alta"
+  ],
+  "extras_cal": [
+   "sin_oscurecimiento"
+  ],
+  "umbral_morf": "mediana",
+  "umbral_cal": "mediana",
+  "cobertura": "todas",
+  "mapeo": "prototipos_finales",
+  "desempate": "mayoritaria_global",
+  "rho_morf": null,
+  "rho_cal": null,
+  "epocas": 10,
+  "politica_nulo": "categoria_propia"
+ },
+ "decisiones": [
+  {
+   "paso": "S1",
+   "descripcion": "mapeo de categorias a etiquetas",
+   "elegida": "prototipos finales",
+   "delta_validacion": 0.0298,
+   "mejor_alternativa_se": 0.0196
+  },
+  {
+   "paso": "S2",
+   "descripcion": "desempate de etiquetas",
+   "elegida": "mayoritaria_global",
+   "delta_validacion": 0.0215,
+   "mejor_alternativa_se": 0.0058
+  },
+  {
+   "paso": "S3",
+   "descripcion": "cobertura de la etapa 1",
+   "elegida": "manzanas de todas las calidades",
+   "delta_validacion": 0.0511,
+   "mejor_alternativa_se": 0.0181
+  },
+  {
+   "paso": "S4",
+   "descripcion": "eleccion de rho",
+   "elegida": "rho elegido en validacion",
+   "delta_validacion": 0.04,
+   "mejor_alternativa_se": 0.0078
+  },
+  {
+   "paso": "S5",
+   "descripcion": "umbrales de calidad (calculados solo con entrenamiento)",
+   "elegida": "medianas exactas del entrenamiento",
+   "delta_validacion": -0.0017,
+   "mejor_alternativa_se": 0.0063
+  },
+  {
+   "paso": "S6",
+   "descripcion": "segmentacion",
+   "elegida": "v1 (saturacion + Otsu)",
+   "delta_validacion": -0.0007,
+   "mejor_alternativa_se": 0.0157
+  },
+  {
+   "paso": "S7",
+   "descripcion": "medicion de tiene_tallo",
+   "elegida": "protuberancia",
+   "delta_validacion": 0.0011,
+   "mejor_alternativa_se": 0.0068
+  },
+  {
+   "paso": "S8",
+   "descripcion": "desvio de tono (color_uniforme / color_homogeneo)",
+   "elegida": "circular ponderado",
+   "delta_validacion": -0.0036,
+   "mejor_alternativa_se": 0.0122
+  },
+  {
+   "paso": "S9",
+   "descripcion": "umbrales de morfologia",
+   "elegida": "mediana del entrenamiento",
+   "delta_validacion": 0.0265,
+   "mejor_alternativa_se": 0.0091
+  },
+  {
+   "paso": "S10",
+   "descripcion": "descriptor cromatico adicional en morfologia",
+   "elegida": "ambos",
+   "delta_validacion": 0.0532,
+   "mejor_alternativa_se": 0.0133
+  },
+  {
+   "paso": "S11",
+   "descripcion": "descriptor cromatico adicional en calidad",
+   "elegida": "sin_oscurecimiento",
+   "delta_validacion": 0.0217,
+   "mejor_alternativa_se": 0.0062
+  },
+  {
+   "paso": "S12",
+   "descripcion": "pasadas de entrenamiento",
+   "elegida": "hasta estabilizar (max 10)",
+   "delta_validacion": 0.0509,
+   "mejor_alternativa_se": 0.0122
+  },
+  {
+   "paso": "S13",
+   "descripcion": "segmentacion (reconsideracion sobre la configuracion final)",
+   "elegida": "v1 (saturacion + Otsu)",
+   "delta_validacion": -0.0303,
+   "mejor_alternativa_se": 0.0163
+  }
+ ],
+ "semillas": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29
+ ],
+ "criterio": "cadena_total_exactitud",
+ "margen": 0.01
+}
