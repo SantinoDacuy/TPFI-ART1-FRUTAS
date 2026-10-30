@@ -23,7 +23,7 @@ python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt          # opencv-python-headless, numpy (versiones fijas)
 pip install -r requirements-dev.txt      # además pytest, para correr las pruebas
-python -m pytest tests -q                # 269 pruebas
+python -m pytest tests -q                # 279 pruebas
 python scripts/verificar_instalacion.py  # repite todo en un entorno virtual TEMPORAL y deja un registro
 ```
 
@@ -84,6 +84,11 @@ El comportamiento normal es **inferencia: los pesos no cambian**. La salida dist
 bits, no reconoce frutas. Por defecto usa `modelos_v2/principal/`; un modelo guardado desde un CSV sin preprocesamiento
 (tipo *vectores*) se rechaza con un mensaje claro.
 
+**Qué esperar de las fotos de `ejemplos/`** (resultado real de la variante principal): las tres manzanas se clasifican
+como manzana y reciben su calidad (`premium`, `comercial`, `descarte`), pero `naranja.jpg` también se clasifica como
+manzana (etapa 1) y `auto.jpg` resuena con una categoría de manzana. Son los límites ya medidos: la separación
+cítrico/manzana es débil y no hay rechazo de objetos ajenos al dominio (ver el informe).
+
 **Aprendizaje explícito** (`--aprender`): plasticidad **en memoria** durante la ejecución (prototipo resonante: AND; sin
 resonancia: categoría **sin etiqueta**). Solo se guarda con `--guardar-aprendizaje CARPETA`, en archivos nuevos:
 
@@ -133,6 +138,21 @@ python scripts/robustez.py --morfologia modelos_v2/principal/art1_morfologia.jso
 Todo es determinista (semillas fijas; GrabCut con semilla fija). La primera ronda (protocolo exploratorio previo) se
 reproduce con `python scripts/experimentos.py todo`; **no la ejecute con `--sobrescribir`** salvo que quiera regenerar
 `config/parametros_etapas.csv` y `modelos_v2/` de esa ronda (se respaldan en `ronda1_medianas/`).
+
+### 6. Guion corto para mostrar cómo aprende la red
+
+```bash
+python CarGross.py --csv datasets_v2/principal/morfologia_entrenamiento.csv --rho 0.3     # pocos grupos grandes (4)
+python CarGross.py --csv datasets_v2/principal/morfologia_entrenamiento.csv --rho 0.6     # valor de la variante principal (11)
+python CarGross.py --csv datasets_v2/principal/morfologia_entrenamiento.csv --rho 0.8     # grupos más finos (25)
+python CarGross.py --csv datasets_v2/principal/morfologia_informe.csv --inferir-con modelos_v2/principal/art1_morfologia.json
+python probar_imagen.py --imagen ejemplos/manzana_descarte_severo.jpg
+```
+
+Subir ρ exige más parecido para entrar a un grupo y produce más grupos; con `--rho 0.95 --max-categorias 14` la corrida
+termina como **infructuosa** (código 1) por proliferación. La penúltima orden evalúa 104 fotos que no se usaron para
+entrenar (67,3 % de exactitud solo en la etapa 1; no es un conjunto externo intacto). Cada foto clasificada deja un
+`diagnostico_clasificacion.png` (ignorado por git).
 
 ## Formatos
 
